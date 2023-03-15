@@ -16,7 +16,8 @@ module.exports = {
 				light: '#E50914',
 			},
 			'stone': {
-				DEFAULT: '#a8a29e'
+				DEFAULT: '#a8a29e',
+				light: '#e7e5e4'
 			}
 		},
 		fontFamily: {

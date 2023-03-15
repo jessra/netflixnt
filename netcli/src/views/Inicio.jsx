@@ -2,7 +2,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -12,7 +12,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -22,7 +22,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -32,7 +32,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -42,7 +42,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -52,7 +52,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",

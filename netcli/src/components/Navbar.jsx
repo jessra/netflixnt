@@ -1,6 +1,6 @@
 import { Disclosure, Dialog, Transition, Menu } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Outlet, Link, useLocation } from "react-router-dom";
 
 function classNames(...classes) {
@@ -260,7 +260,7 @@ export default function Navbar() {
 												name="director"
 												id="director"
 												autoComplete="given-name"
-												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+												className="block w-full rounded-t-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 											/>
 										</div>
 										<div className="col-span-2 sm:col-span-1">
@@ -275,7 +275,7 @@ export default function Navbar() {
 												name="franquicia"
 												id="franquicia"
 												autoComplete="given-name"
-												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+												className="block w-full rounded-t-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 											/>
 										</div>
 										<div className="col-span-2 sm:col-span-1">
@@ -290,7 +290,7 @@ export default function Navbar() {
 												name="genero"
 												id="genero"
 												autoComplete="given-name"
-												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+												className="block w-full rounded-t-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 											/>
 										</div>
 										<div className="col-span-2 sm:col-span-1">
@@ -305,7 +305,7 @@ export default function Navbar() {
 												name="fecha"
 												id="fechaLanzamiento"
 												autoComplete="given-name"
-												className="block w-full rounded-md border-0 py-1.5 px-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+												className="block w-full rounded-t-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 											/>
 										</div>
 										<div className="col-span-2">
@@ -320,7 +320,7 @@ export default function Navbar() {
 												name="last-name"
 												id="last-name"
 												autoComplete="family-name"
-												className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+												className="block w-full rounded-t-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 											/>
 										</div>
 									</div>

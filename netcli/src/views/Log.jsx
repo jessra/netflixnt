@@ -32,7 +32,7 @@ export default function Log() {
 													</svg>
 												</span>
 												<label
-													className="ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold   shadow-sm hover:bg-gray-50block text-sm font-medium leading-6  "
+													className="ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold   shadow-sm hover:bg-gray-50block text-sm font-medium leading-6"
 													htmlFor="img"
 												>
 													Imagen de usuario
