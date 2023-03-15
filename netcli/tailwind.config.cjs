@@ -2,7 +2,6 @@
 module.exports = {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
-		extend: {},
 		colors: {
 			'transparent': 'transparent',
 			'black': '#000',
@@ -15,10 +14,13 @@ module.exports = {
 				DEFAULT: '#CC0812',
 				dark: '#8C060C',
 				light: '#E50914',
+			},
+			'stone': {
+				DEFAULT: '#a8a29e'
 			}
 		},
+		fontFamily: {
+      manrope: ['Manrope'],
+    },
 	},
-	plugins: [
-		require('@tailwindcss/forms'),
-	],
 };
