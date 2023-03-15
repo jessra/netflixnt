@@ -2,7 +2,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -12,7 +12,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -22,7 +22,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -32,7 +32,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -42,7 +42,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -52,7 +52,7 @@ const peliculas = [
 	{
 		id: 1,
 		name: "El gato",
-		href: "#",
+		href: "/ver",
 		imageSrc:
 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
 		imageAlt: "El gato",
@@ -68,7 +68,7 @@ export default function Example() {
 		<div className="bg-white">
 			<Filtros />
 			<div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-				<h3 className="text-2xl font-bold tracking-tight text-gray-900">
+				<h3 className="text-2xl font-bold tracking-tight  ">
 					Películas
 				</h3>
 
@@ -84,15 +84,15 @@ export default function Example() {
 							</div>
 							<div className="mt-4 flex justify-between">
 								<div>
-									<h3 className="text-sm text-gray-700">
+									<h3 className="text-sm ">
 										<a href={pelicula.href}>
 											<span aria-hidden="true" className="absolute inset-0" />
 											{pelicula.name}
 										</a>
 									</h3>
-									<p className="mt-1 text-sm text-gray-500">{pelicula.descripcion}</p>
+									<p className="mt-1 text-sm ">{pelicula.descripcion}</p>
 								</div>
-								<p className="text-sm font-medium text-gray-900">{pelicula.fecha}</p>
+								<p className="text-sm font-medium  ">{pelicula.fecha}</p>
 							</div>
 						</div>
 					))}
