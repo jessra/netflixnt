@@ -1,20 +1,31 @@
 import { Disclosure, Dialog, Transition, Menu } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import { Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
 import { Outlet, Link, useLocation } from "react-router-dom";
+import { Contexto_Funciones } from "../context/contextoFunciones";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 export default function Navbar() {
+	const { registrarPelicula } = useContext(Contexto_Funciones);
 	const [isOpenModal, setisOpenModal] = useState(false);
-
-	function closeModal() {
-		setisOpenModal(false);
-	}
-
-	function openModal() {
-		setisOpenModal(true);
+	const [head, setHead] = useState('');
+	const [di, setDi] = useState('');
+	const [fran, setFran] = useState('');
+	const [gen, setGen] = useState('');
+	const [fecMov, setFecMov] = useState('');
+	const [sip, setSip] = useState('');
+	const [img, setImg] = useState({preview: '', data: ''});
+  const cambioImg = (e) => {
+    const img2 = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    }
+    setImg(img2)
+  }
+	function Modal() {
+		setisOpenModal(!isOpenModal);
 	}
 	const location = useLocation();
 	return (
@@ -76,7 +87,7 @@ export default function Navbar() {
 											</Link>
 											<button
 												type="button"
-												onClick={openModal}
+												onClick={Modal}
 												className={classNames(
 													isOpenModal
 														? "bg-primario text-white"
@@ -158,7 +169,7 @@ export default function Navbar() {
 							{({ close }) => (
 								<button
 									onClick={async () => {
-										openModal();
+										Modal();
 										close();
 									}}
 									className={classNames(
@@ -177,7 +188,7 @@ export default function Navbar() {
 			</Disclosure>
 
 			<Transition appear show={isOpenModal} as={Fragment}>
-				<Dialog as="div" className="relative z-10" onClose={closeModal}>
+				<Dialog as="div" className="relative z-10" onClose={Modal}>
 					<Transition.Child
 						as={Fragment}
 						enter="ease-out duration-300"
@@ -204,9 +215,9 @@ export default function Navbar() {
 								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
 									<Dialog.Title as="div">
 										<p className="text-lg font-medium leading-6">
-											Sube tu película
+											Subir película
 											<button
-												onClick={closeModal}
+												onClick={Modal}
 												className="
 													inline-flex float-right justify-center rounded-md
 													py-2 px-3 text-sm font-semibold
@@ -221,6 +232,7 @@ export default function Navbar() {
 											htmlFor="file-upload"
 											className="mt-2 mx-auto flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6"
 										>
+											<img src={img.preview} alt="" />
 											<div className="space-y-1 text-center">
 												<svg
 													className="mx-auto h-12 w-12"
@@ -245,9 +257,27 @@ export default function Navbar() {
 											name="file-upload"
 											type="file"
 											className="sr-only hidden"
+											onChange={cambioImg} 
+											accept=".jpg, .jpeg, .png"
 										/>
 									</div>
 									<div className="grid grid-cols-2 gap-2 mt-3">
+										<div className="col-span-2 sm:col-span-1">
+											<label
+												htmlFor="titulo"
+												className="block text-sm font-medium leading-6"
+											>
+												Título
+											</label>
+											<input
+												type="text"
+												name="titulo"
+												id="titulo"
+												autoComplete="given-name"
+												onChange={(e) => setHead(e.target.value)}
+												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+											/>
+										</div>
 										<div className="col-span-2 sm:col-span-1">
 											<label
 												htmlFor="director"
@@ -260,6 +290,7 @@ export default function Navbar() {
 												name="director"
 												id="director"
 												autoComplete="given-name"
+												onChange={(e) => setDi(e.target.value)}
 												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
@@ -275,6 +306,7 @@ export default function Navbar() {
 												name="franquicia"
 												id="franquicia"
 												autoComplete="given-name"
+												onChange={(e) => setFran(e.target.value)}
 												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
@@ -290,6 +322,7 @@ export default function Navbar() {
 												name="genero"
 												id="genero"
 												autoComplete="given-name"
+												onChange={(e) => setGen(e.target.value)}
 												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
@@ -305,6 +338,7 @@ export default function Navbar() {
 												name="fecha"
 												id="fechaLanzamiento"
 												autoComplete="given-name"
+												onChange={(e) => setFecMov(e.target.value)}
 												className="block w-full rounded-md border-0 py-1.5 px-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
@@ -313,13 +347,14 @@ export default function Navbar() {
 												htmlFor="last-name"
 												className="block text-sm font-medium leading-6 text-gray-900"
 											>
-												Descripción
+												Sipnósis
 											</label>
 											<input
 												type="text"
 												name="last-name"
 												id="last-name"
 												autoComplete="family-name"
+												onChange={(e) => setSip(e.target.value)}
 												className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
@@ -327,7 +362,7 @@ export default function Navbar() {
 
 									<div className="mt-4">
 										<button
-											onClick={closeModal}
+											onClick={(e) => registrarPelicula(head, di, fran, gen, fecMov, sip, img)}
 											className="
                       inline-flex float-right justify-center rounded-md
                       py-2 px-3 text-sm font-semibold text-muted hover:text-white

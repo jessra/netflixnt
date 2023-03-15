@@ -1,103 +1,108 @@
-const peliculas = [
-	{
-		id: 1,
-		name: "El gato",
-		href: "#",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-		imageAlt: "El gato",
-		fecha: "12/02/20",
-		descripcion: "Era negro hasta que se baño",
-	},
-	{
-		id: 1,
-		name: "El gato",
-		href: "#",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-		imageAlt: "El gato",
-		fecha: "12/02/20",
-		descripcion: "Era negro hasta que se baño",
-	},
-	{
-		id: 1,
-		name: "El gato",
-		href: "#",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-		imageAlt: "El gato",
-		fecha: "12/02/20",
-		descripcion: "Era negro hasta que se baño",
-	},
-	{
-		id: 1,
-		name: "El gato",
-		href: "#",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-		imageAlt: "El gato",
-		fecha: "12/02/20",
-		descripcion: "Era negro hasta que se baño",
-	},
-	{
-		id: 1,
-		name: "El gato",
-		href: "#",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-		imageAlt: "El gato",
-		fecha: "12/02/20",
-		descripcion: "Era negro hasta que se baño",
-	},
-	{
-		id: 1,
-		name: "El gato",
-		href: "#",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-		imageAlt: "El gato",
-		fecha: "12/02/20",
-		descripcion: "Era negro hasta que se baño",
-	},
-	// More products...
-];
+// const peliculas = [
+// 	{
+// 		id: 1,
+// 		name: "El gato",
+// 		href: "#",
+// 		imageSrc:
+// 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+// 		imageAlt: "El gato",
+// 		fecha: "12/02/20",
+// 		descripcion: "Era negro hasta que se baño",
+// 	},
+// 	{
+// 		id: 1,
+// 		name: "El gato",
+// 		href: "#",
+// 		imageSrc:
+// 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+// 		imageAlt: "El gato",
+// 		fecha: "12/02/20",
+// 		descripcion: "Era negro hasta que se baño",
+// 	},
+// 	{
+// 		id: 1,
+// 		name: "El gato",
+// 		href: "#",
+// 		imageSrc:
+// 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+// 		imageAlt: "El gato",
+// 		fecha: "12/02/20",
+// 		descripcion: "Era negro hasta que se baño",
+// 	},
+// 	{
+// 		id: 1,
+// 		name: "El gato",
+// 		href: "#",
+// 		imageSrc:
+// 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+// 		imageAlt: "El gato",
+// 		fecha: "12/02/20",
+// 		descripcion: "Era negro hasta que se baño",
+// 	},
+// 	{
+// 		id: 1,
+// 		name: "El gato",
+// 		href: "#",
+// 		imageSrc:
+// 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+// 		imageAlt: "El gato",
+// 		fecha: "12/02/20",
+// 		descripcion: "Era negro hasta que se baño",
+// 	},
+// 	{
+// 		id: 1,
+// 		name: "El gato",
+// 		href: "#",
+// 		imageSrc:
+// 			"https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+// 		imageAlt: "El gato",
+// 		fecha: "12/02/20",
+// 		descripcion: "Era negro hasta que se baño",
+// 	},
+// 	// More products...
+// ];
+import { useState, useContext } from "react";
 import Filtros from '../components/Filtros'
+import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function Example() {
-	return (
-		<div className="bg-white">
-			<Filtros />
-			<div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-				<h3 className="text-2xl font-bold tracking-tight text-gray-900">
-					Películas
-				</h3>
-
-				<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-					{peliculas.map((pelicula) => (
-						<div key={pelicula.id} className="group relative">
-							<div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-								<img
-									src={pelicula.imageSrc}
-									alt={pelicula.imageAlt}
-									className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-								/>
-							</div>
-							<div className="mt-4 flex justify-between">
-								<div>
-									<h3 className="text-sm text-gray-700">
-										<a href={pelicula.href}>
-											<span aria-hidden="true" className="absolute inset-0" />
-											{pelicula.name}
-										</a>
-									</h3>
-									<p className="mt-1 text-sm text-gray-500">{pelicula.descripcion}</p>
+	const { peli } = useContext(Contexto_Funciones);
+	if (peli) {
+		return (
+			<div className="bg-white">
+				<Filtros />
+				<div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+					<h3 className="text-2xl font-bold tracking-tight text-gray-900">
+						Películas
+					</h3>
+	
+					<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+						{peli.map((pelicula) => (
+							<div key={pelicula.id} className="group relative">
+								<div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+									<img
+										src={`../src/peliculas/` + pelicula.img}
+										alt={`Imagen película ` + pelicula.head}
+										className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+									/>
 								</div>
-								<p className="text-sm font-medium text-gray-900">{pelicula.fecha}</p>
+								<div className="mt-4 flex justify-between">
+									<div>
+										<h3 className="text-sm text-gray-700">
+											<a>
+												<span aria-hidden="true" className="absolute inset-0" />
+												{pelicula.head}
+											</a>
+										</h3>
+										<p className="mt-1 text-sm text-gray-500">{pelicula.sipnosis}</p>
+									</div>
+									<p className="text-sm font-medium text-gray-900">{pelicula.fecMov}</p>
+								</div>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 }

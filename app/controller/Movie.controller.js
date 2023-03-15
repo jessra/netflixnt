@@ -161,7 +161,6 @@ exports.findAll = async (req, res) => {
 exports.findOneMov = async (req, res) => {
 	try {
 		const mov = await Movie.findOne({where: {idMov: req.params.id}})
-		console.log(mov)
 		const dir = await Director.findOne({attributes: ['nameDi'], where: {idDi: mov.director}})
 		const fran = await Franquicia.findOne({attributes: ['nameFran'], where: {idFran: mov.franquicia}})
 		const gen = await Genero.findOne({attributes: ['nameGe'], where: {idGe: mov.genero}})
