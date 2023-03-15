@@ -1,24 +1,25 @@
 'use strict'
 module.exports = (sequelize, Sequelize) => {
-	let Users = sequelize.define('users', {
-    idUser: {
-			type: Sequelize.SMALLINT,
-			primaryKey: true,
-			autoIncrement: true
+	let Review = sequelize.define('Reviews', {
+    idRev: {
+    type: Sequelize.SMALLINT,
+    primaryKey: true,
+		autoIncrement: true
     },
-	  name: {
-			type: Sequelize.STRING,
-			allowNull: false,
-			unique: {
-				msg: 'Usuario ya existente'
-			},
+	  idUserRev: {
+		type: Sequelize.SMALLINT,
+		allowNull: false
 	  },
-	  pass: {
-			type: Sequelize.STRING,
-			allowNull: false
+	  idPubliRev: {
+		type: Sequelize.SMALLINT,
+		allowNull: false
 	  },
-		img: {
+		review: {
 			type: Sequelize.TEXT,
+			allowNull: false
+		},
+		valorRev: {
+			type: Sequelize.SMALLINT,
 			allowNull: false
 		},
 		createdAt: {
@@ -30,10 +31,10 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.DATE,
 			field: 'update_at',
 			defaultValue: Sequelize.NOW
-		},
+		}
 	}, {
 		// freezeTableName: true
 	});
-  
-	return Users;
+
+	return Review;
 }
