@@ -20,10 +20,14 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
-// db.Users = require('../models/users.js')(sequelize, Sequelize);
-// db.Publication = require('../models/publication.js')(sequelize, Sequelize);
-// db.Fav = require('../models/fav.js')(sequelize, Sequelize);
-// db.Category = require('../models/category.js')(sequelize, Sequelize);
+db.Users = require('../models/users.js')(sequelize, Sequelize);
+db.Review = require('../models/review.js')(sequelize, Sequelize);
+db.MovieActors = require('../models/movieActors.js')(sequelize, Sequelize);
+db.Actors = require('../models/actors.js')(sequelize, Sequelize);
+db.Movie = require('../models/movie.js')(sequelize, Sequelize);
+db.Genero = require('../models/genero.js')(sequelize, Sequelize);
+db.Franquicia = require('../models/franquicia.js')(sequelize, Sequelize);
+db.Director = require('../models/director.js')(sequelize, Sequelize);
 
 
 module.exports = db;

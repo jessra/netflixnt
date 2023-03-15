@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, Sequelize) => {
-	let Publication = sequelize.define('publications', {
-    idPub: {
+	let Movie = sequelize.define('Movies', {
+    idMov: {
     type: Sequelize.SMALLINT,
     primaryKey: true,
 		autoIncrement: true
@@ -10,20 +10,29 @@ module.exports = (sequelize, Sequelize) => {
 		type: Sequelize.STRING,
 		allowNull: false
 	  },
-	  description: {
-		type: Sequelize.TEXT
+	  sipnosis: {
+		type: Sequelize.TEXT,
+		allowNull: false
 	  },
-		autor: {
+		director: {
 		type: Sequelize.SMALLINT,
 		allowNull: false
 		},
-		category: {
+		genero: {
+		type: Sequelize.SMALLINT,
+		allowNull: false
+		},
+		franquicia: {
 		type: Sequelize.SMALLINT,
 		allowNull: false
 		},
 		img: {
 		type: Sequelize.TEXT,
 		allowNull: false
+		},
+		fecMov: {
+			type: Sequelize.DATE,
+			allowNull: false
 		},
 		createdAt: {
 			type: Sequelize.DATE,
@@ -39,8 +48,5 @@ module.exports = (sequelize, Sequelize) => {
 		// freezeTableName: true
 	});
 
-  Publication.associate = models => {
-    Publication.belongsTo(models.users)
-  }
-	return Publication;
+	return Movie;
 }

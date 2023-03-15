@@ -1,18 +1,17 @@
 'use strict'
 module.exports = (sequelize, Sequelize) => {
-	let Fav = sequelize.define('favs', {
-    idFav: {
+	let Genero = sequelize.define('generos', {
+    idGe: {
     type: Sequelize.SMALLINT,
     primaryKey: true,
 		autoIncrement: true
     },
-	  idUserFav: {
-		type: Sequelize.SMALLINT,
-		allowNull: false
-	  },
-	  idPubliFav: {
-		type: Sequelize.SMALLINT,
-		allowNull: false
+	  nameGe: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		unique: {
+			msg: 'Genero ya existente'
+		},
 	  },
 		createdAt: {
 			type: Sequelize.DATE,
@@ -28,5 +27,5 @@ module.exports = (sequelize, Sequelize) => {
 		// freezeTableName: true
 	});
 
-	return Fav;
+	return Genero;
 }

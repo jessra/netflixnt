@@ -1,16 +1,16 @@
 'use strict'
 module.exports = (sequelize, Sequelize) => {
-	let Category = sequelize.define('categorys', {
-    idCat: {
+	let Actors = sequelize.define('actors', {
+    idAc: {
     type: Sequelize.SMALLINT,
     primaryKey: true,
 		autoIncrement: true
     },
-	  nameCat: {
+	  nameAc: {
 		type: Sequelize.STRING,
 		allowNull: false,
 		unique: {
-			msg: 'Categoría ya existente'
+			msg: 'EL actor ya existente'
 		},
 	  },
 		createdAt: {
@@ -27,5 +27,5 @@ module.exports = (sequelize, Sequelize) => {
 		// freezeTableName: true
 	});
 
-	return Category;
+	return Actors;
 }
