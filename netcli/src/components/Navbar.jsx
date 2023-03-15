@@ -7,7 +7,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 export default function Navbar() {
-	const [isOpenModal, setisOpenModal] = useState(true);
+	const [isOpenModal, setisOpenModal] = useState(false);
 
 	function closeModal() {
 		setisOpenModal(false);
@@ -21,7 +21,7 @@ export default function Navbar() {
 		<>
 			<Disclosure
 				as="nav"
-				className="sticky w-full top-0 bg-zinc-900 md:bg-transparent z-50 manrope border-b-2 border-stone"
+				className="sticky w-full top-0 bg-zinc-900 bg-white z-50 manrope border-b-2 border-stone"
 			>
 				{({ open }) => (
 					<>
@@ -92,7 +92,11 @@ export default function Navbar() {
 								<Menu as="div" className="ml-3">
 									<div>
 										<Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-											<img className="h-8 w-8 rounded-full" src="" alt="" />
+											<img
+												className="h-8 w-8 rounded-full"
+												src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+												alt=""
+											/>
 										</Menu.Button>
 									</div>
 									<Transition
