@@ -1,6 +1,6 @@
-import { Disclosure, Dialog, Transition } from "@headlessui/react";
+import { Disclosure, Dialog, Transition, Menu } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
 import { Outlet, Link, useLocation } from "react-router-dom";
 
 function classNames(...classes) {
@@ -89,6 +89,38 @@ export default function Navbar() {
 										</div>
 									</div>
 								</div>
+								<Menu as="div" className="ml-3">
+									<div>
+										<Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+											<img className="h-8 w-8 rounded-full" src="" alt="" />
+										</Menu.Button>
+									</div>
+									<Transition
+										as={Fragment}
+										enter="transition ease-out duration-100"
+										enterFrom="transform opacity-0 scale-95"
+										enterTo="transform opacity-100 scale-100"
+										leave="transition ease-in duration-75"
+										leaveFrom="transform opacity-100 scale-100"
+										leaveTo="transform opacity-0 scale-95"
+									>
+										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+											<Menu.Item>
+												{({ active }) => (
+													<Link
+														href="/Log"
+														className={classNames(
+															active ? "bg-gray-100" : "",
+															"block px-4 py-2 text-sm text-gray-700"
+														)}
+													>
+														Cerrar sesión
+													</Link>
+												)}
+											</Menu.Item>
+										</Menu.Items>
+									</Transition>
+								</Menu>
 							</div>
 						</div>
 
@@ -166,7 +198,7 @@ export default function Navbar() {
 								leaveTo="opacity-0 scale-95"
 							>
 								<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-									<Dialog.Title as="Fragment" className="">
+									<Dialog.Title as="div">
 										<p className="text-lg font-medium leading-6">
 											Sube tu película
 											<button
