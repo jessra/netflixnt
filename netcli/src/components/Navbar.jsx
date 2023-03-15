@@ -195,7 +195,7 @@ export default function Navbar() {
 										/>
 									</div>
 									<div className="grid grid-cols-2 gap-2 mt-3">
-										<div className="col-span-6 sm:col-span-1">
+										<div className="col-span-2 sm:col-span-1">
 											<label
 												htmlFor="director"
 												className="block text-sm font-medium leading-6"
@@ -210,7 +210,7 @@ export default function Navbar() {
 												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
-										<div className="col-span-6 sm:col-span-1 mt-3">
+										<div className="col-span-2 sm:col-span-1">
 											<label
 												htmlFor="franquicia"
 												className="block text-sm font-medium leading-6"
@@ -225,7 +225,7 @@ export default function Navbar() {
 												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
-										<div className="col-span-6 sm:col-span-1 mt-3">
+										<div className="col-span-2 sm:col-span-1">
 											<label
 												htmlFor="genero"
 												className="block text-sm font-medium leading-6"
@@ -240,7 +240,7 @@ export default function Navbar() {
 												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
-										<div className="col-span-6 sm:col-span-1 mt-3">
+										<div className="col-span-2 sm:col-span-1">
 											<label
 												htmlFor="fecha"
 												className="block text-sm font-medium leading-6"
@@ -255,7 +255,7 @@ export default function Navbar() {
 												className="block w-full rounded-md border-0 py-1.5 px-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											/>
 										</div>
-										<div className="col-span-6 sm:col-span-3">
+										<div className="col-span-2">
 											<label
 												htmlFor="last-name"
 												className="block text-sm font-medium leading-6 text-gray-900"
