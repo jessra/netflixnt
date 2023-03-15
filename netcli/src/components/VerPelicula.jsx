@@ -52,7 +52,7 @@ export default function VerPelicula() {
 			<Filtros />
 			<div className="mt-5">
 				<iframe
-					className="mx-auto"
+					className="w-full h-[20rem] sm:h-[30rem] lg:h-[40rem]"
 					src="https://www.youtube.com/embed/sIRqhkk0q_w"
 					title="YouTube video player"
 					frameborder="0"
