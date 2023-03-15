@@ -89,7 +89,7 @@ export default function Log() {
 										type="submit"
 										className="
                       group flex w-full justify-center rounded-md
-                      py-2 px-3 text-sm font-semibold text-muted hover:text-white
+                      py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 									>
@@ -170,7 +170,7 @@ export default function Log() {
 										type="submit"
 										className="
                       group flex w-full justify-center rounded-md
-                      py-2 px-3 text-sm font-semibold text-muted hover:text-white
+                      py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 									>

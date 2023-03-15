@@ -7,7 +7,7 @@ module.exports = {
 			'black': '#000',
 			'white': '#fff',
 			'muted': {
-				DEFAULT:'#f5f5f5',
+				DEFAULT:'#a8a29e',
 				neutral: '#a1a1aa',
 			},
 			'primario': {
@@ -17,7 +17,8 @@ module.exports = {
 			},
 			'stone': {
 				DEFAULT: '#a8a29e',
-				light: '#e7e5e4'
+				light: '#e7e5e4',
+				dark: '#292524'
 			}
 		},
 		fontFamily: {

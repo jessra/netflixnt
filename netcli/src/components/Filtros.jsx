@@ -6,7 +6,7 @@ export default function Filtros() {
 				<div className="col-span-3 sm:col-span-4 lg:col-span-1">
 					<label
 						htmlFor="nombre"
-						className="block text-sm font-medium leading-6 text-gray-900"
+						className="block text-sm font-medium leading-6  "
 					>
 						Nombre
 					</label>
@@ -21,7 +21,7 @@ export default function Filtros() {
 				<div className="col-span-3 sm:col-span-2 lg:col-span-1">
 					<label
 						htmlFor="autor"
-						className="block text-sm font-medium leading-6 text-gray-900"
+						className="block text-sm font-medium leading-6  "
 					>
 						Autor
 					</label>
@@ -36,7 +36,7 @@ export default function Filtros() {
 				<div className="col-span-3 sm:col-span-2 lg:col-span-1">
 					<label
 						htmlFor="categoria"
-						className="block text-sm font-medium leading-6 text-gray-900"
+						className="block text-sm font-medium leading-6  "
 					>
 						Categoría
 					</label>

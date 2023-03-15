@@ -115,7 +115,7 @@ export default function Navbar() {
 														href="/Log"
 														className={classNames(
 															active ? "bg-gray-100" : "",
-															"block px-4 py-2 text-sm text-gray-700"
+															"block px-4 py-2 text-sm "
 														)}
 													>
 														Cerrar sesión
@@ -311,7 +311,7 @@ export default function Navbar() {
 										<div className="col-span-2">
 											<label
 												htmlFor="last-name"
-												className="block text-sm font-medium leading-6 text-gray-900"
+												className="block text-sm font-medium leading-6  "
 											>
 												Descripción
 											</label>
@@ -330,7 +330,7 @@ export default function Navbar() {
 											onClick={closeModal}
 											className="
                       inline-flex float-right justify-center rounded-md
-                      py-2 px-3 text-sm font-semibold text-muted hover:text-white
+                      py-2 px-3 text-sm font-semibold text-white hover:text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 										>
