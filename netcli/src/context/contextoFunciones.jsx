@@ -32,7 +32,6 @@ export function Contexto_DataProvider(props) {
     listaActivo()
     listaPeliculas()
   }, [])
-  console.log(peli)
 
   function listaActivo () {
     if (localStorage.getItem('netflixnt') != null){

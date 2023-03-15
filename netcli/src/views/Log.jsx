@@ -55,7 +55,7 @@ export default function Log() {
 													</svg>
 												</span>
 												<label
-													className="ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold   shadow-sm hover:bg-gray-50block text-sm font-medium leading-6  "
+													className="ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold   shadow-sm hover:bg-gray-50block text-sm font-medium leading-6"
 													htmlFor="img"
 												>
 													Imagen de usuario
@@ -114,7 +114,7 @@ export default function Log() {
 										type="submit"
 										className="
                       group flex w-full justify-center rounded-md
-                      py-2 px-3 text-sm font-semibold text-muted hover:text-white
+                      py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 										onClick={reg}
@@ -198,7 +198,7 @@ export default function Log() {
 										type="submit"
 										className="
                       group flex w-full justify-center rounded-md
-                      py-2 px-3 text-sm font-semibold text-muted hover:text-white
+                      py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 										onClick={log}

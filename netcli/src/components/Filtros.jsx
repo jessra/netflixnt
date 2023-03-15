@@ -6,7 +6,7 @@ export default function Filtros() {
 				<div className="col-span-3 sm:col-span-4 lg:col-span-1">
 					<label
 						htmlFor="nombre"
-						className="block text-sm font-medium leading-6 text-gray-900"
+						className="block text-sm font-medium leading-6  "
 					>
 						Nombre
 					</label>
@@ -15,13 +15,13 @@ export default function Filtros() {
 						name="nombre"
 						id="nombre"
 						autoComplete="email"
-						className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+						className="block w-full rounded-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 					/>
 				</div>
 				<div className="col-span-3 sm:col-span-2 lg:col-span-1">
 					<label
 						htmlFor="autor"
-						className="block text-sm font-medium leading-6 text-gray-900"
+						className="block text-sm font-medium leading-6  "
 					>
 						Autor
 					</label>
@@ -30,13 +30,13 @@ export default function Filtros() {
 						name="autor"
 						id="autor"
 						autoComplete="email"
-						className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+						className="block w-full rounded-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 					/>
 				</div>
 				<div className="col-span-3 sm:col-span-2 lg:col-span-1">
 					<label
 						htmlFor="categoria"
-						className="block text-sm font-medium leading-6 text-gray-900"
+						className="block text-sm font-medium leading-6  "
 					>
 						Categoría
 					</label>
@@ -44,7 +44,7 @@ export default function Filtros() {
 						id="categoria"
 						name="categoria"
 						autoComplete="categoria-name"
-						className="mt-2 block w-full rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+						className="block w-full rounded-md py-1.5 px-3 focus:z-10 border-2 border-muted-neutral focus-visible:border-primario-light sm:text-sm sm:leading-6"
 					>
 						<option>United States</option>
 						<option>Canada</option>
