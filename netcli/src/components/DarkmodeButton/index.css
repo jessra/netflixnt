@@ -1,0 +1,37 @@
+.dark-mode-button {
+  background-color: black;
+  color: white;
+}
+
+.light-mode-button {
+  background-color: #eee;
+  color: black;
+}
+
+.button {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-button:hover {
+  background-color: #333;
+  cursor: pointer;
+}
+
+.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+
+.dark-mode .dark-mode-button {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+.dark-mode .dark-mode-button:hover {
+  background-color: #f3f3f3;
+  color: #000;
+}
