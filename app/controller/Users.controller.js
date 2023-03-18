@@ -18,10 +18,13 @@ exports.create = (req, name, res) => {
 	})
 };
 
-exports.findAll = (req, res) => {
-	Users.findAll().then(user => {
-		res.send(user);
+exports.findOneUse = (req, res) => {
+	Users.findOne({where: {name: req.body.user, pass: req.body.pass}}).then(user => {
+    const token = jwt.sign({ id: user.idUser }, config.secret, {
+      expiresIn: Date.now() + 60 * 80000
+    });
+		res.send({user, token});
 	}).catch(err => {
-		res.status(500).send("Error -> " + err);
+		res.send({err});
 	})
 };

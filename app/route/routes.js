@@ -2,7 +2,7 @@ module.exports = function(app) {
   const users = require('../controller/Users.controller.js');
   const movie = require('../controller/Movie.controller.js');
   const category = require('../controller/Category.controller.js');
-  const favs = require('../controller/Favs.controller.js');
+  const review = require('../controller/Review.controller.js');
   const verify = require('../controller/Verify.controller');
   const jwt = require('jsonwebtoken');
   const config = require('../config')
@@ -28,7 +28,8 @@ module.exports = function(app) {
 	// 	res.send({token});
   // })
   // Users
-  app.get('/api/users', users.findAll);
+  // app.get('/api/users', users.findAll);
+  app.post('/api/inituser', users.findOneUse);
   app.post('/api/aggusers', upload.single('file'), function (req, res) {
     console.log(req.file);
     users.create(req, name, res)
@@ -36,8 +37,8 @@ module.exports = function(app) {
 
   // Movies
   app.get('/api/movies', movie.findAll);
-  app.get('/api/movie/:id', movie.findOneMov)
-  app.post('/api/aggmovies', upload.single('file'), function (req, res) {
+  app.post('/api/movie/:id', movie.findOneMov)
+  app.post('/api/aggmovies', verify, upload.single('file'), function (req, res) {
     console.log(req.file)
     movie.create(req, name, res)
   });

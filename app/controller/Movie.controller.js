@@ -45,7 +45,8 @@ exports.create = async (req, name, res) => {
 			genero: gen.idGe,
 			franquicia: fran.idFran,
 			fecMov: req.body.fecMov,
-			img: name
+			img: name,
+			link: req.body.link,
 		})
 		for await (const act of req.body.actors){
 			const [actor, creactor] = await Actors.findOrCreate({
@@ -115,6 +116,9 @@ exports.update = async (req, name, res) => {
 		if (req.body.fecMov) {
 			await Movie.update({ fecMov: req.body.fecMov }, { where: {idMov: req.body.id} })
 		}
+		if (req.body.link) {
+			await Movie.update({ link: req.body.link }, { where: {idMov: req.body.id} })
+		}
 		if (name) {
 			await Movie.update({ img: name }, { where: {idMov: req.body.id} })
 		}
@@ -161,17 +165,17 @@ exports.findAll = async (req, res) => {
 exports.findOneMov = async (req, res) => {
 	try {
 		const mov = await Movie.findOne({where: {idMov: req.params.id}})
-		console.log(mov)
 		const dir = await Director.findOne({attributes: ['nameDi'], where: {idDi: mov.director}})
 		const fran = await Franquicia.findOne({attributes: ['nameFran'], where: {idFran: mov.franquicia}})
 		const gen = await Genero.findOne({attributes: ['nameGe'], where: {idGe: mov.genero}})
 		const idAct = await MovieActors.findAll({attributes: ['idActorMA'], where: {idMovieMA: mov.idMov}})
+		const rec = await Movie.findAll({attributes: ['idMov', 'head', 'sipnosis', 'fecMov', 'img'], limit: 5, order: [['idMov', 'DESC']]})
 		let data = []
     idAct.forEach(c => {
       data.push(c.dataValues.idActorMA)
     });
 		const act = await Actors.findAll({attributes: ['nameAc'], where: {idAc: data}})
-		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen})
+		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen, rec: rec})
 	} catch (error) {
 		res.send('Ocurrió un error. ' + error)		
 	}

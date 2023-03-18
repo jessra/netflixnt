@@ -1,8 +1,30 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
+import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function Log() {
+	const { iniciarCuenta, registrarCuenta } = useContext(Contexto_Funciones);
 	const [registro, setRegistro] = useState(true);
+	const [userLog, setUserLog] = useState("");
+	const [passLog, setPassLog] = useState("");
+	const [userReg, setUserReg] = useState("");
+	const [passReg, setPassReg] = useState("");
+	const [imgReg, setImgReg] = useState({preview: '', data: ''});
+  const cambioImg = (e) => {
+    const img2 = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    }
+    setImgReg(img2)
+  }
+	const reg = (e) => {
+    e.preventDefault();
+		registrarCuenta(userReg, passReg, imgReg)
+	}
+	const log = (e) => {
+		e.preventDefault();
+		iniciarCuenta(userLog, passLog)
+	}
 	switch (registro) {
 		case true:
 			return (
@@ -15,13 +37,14 @@ export default function Log() {
 									Crea una cuenta
 								</h2>
 							</div>
-							<form className="mt-8 space-y-6" action="#" method="POST">
+							<form className="mt-8 space-y-6">
 								<input type="hidden" name="remember" defaultValue="true" />
 								<div className="-space-y-px rounded-md shadow-sm">
 									<div>
 										<div className="my-3 mx-auto w-[15rem]">
-											<input type="file" name="photo" id="img" className="hidden" />
+											<input type="file" name="photo" id="img" className="hidden" onChange={cambioImg} accept=".jpg, .jpeg, .png"/>
 											<div className="mt-2 flex items-center">
+												<img src={imgReg.preview} alt="" />
 												<span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
 													<svg
 														className="h-full w-full  "
@@ -50,7 +73,8 @@ export default function Log() {
 											type="text"
 											required
 											className="block w-full rounded-t-md border-0 py-1.5 px-3 ring-1 ring-inset ring-muted-neutral focus:z-10 focus-visible:ring-0 focus:ring-primario sm:text-sm sm:leading-6"
-											placeholder="Correo electrónico"
+											placeholder="Nombre de usuario"
+											onChange={(e) => setUserReg(e.target.value)}
 										/>
 									</div>
 									<div>
@@ -60,11 +84,12 @@ export default function Log() {
 										<input
 											id="contraseña"
 											name="contraseña"
-											type="contraseña"
+											type="password"
 											autoComplete="current-password"
 											required
 											className="block w-full rounded-b-md border-0 py-1.5 px-3 ring-1 ring-inset ring-muted-neutral focus:z-10 focus-visible:ring-0 focus:ring-primario sm:text-sm sm:leading-6"
 											placeholder="Contraseña"
+											onChange={(e) => setPassReg(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -92,6 +117,7 @@ export default function Log() {
                       py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+										onClick={reg}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">
 											<LockClosedIcon
@@ -118,7 +144,7 @@ export default function Log() {
 									Inicia sesión en tu cuenta
 								</h2>
 							</div>
-							<form className="mt-8 space-y-6" action="#" method="POST">
+							<form className="mt-8 space-y-6">
 								<input type="hidden" name="remember" defaultValue="true" />
 								<div className="-space-y-px rounded-md shadow-sm">
 									<div>
@@ -132,6 +158,7 @@ export default function Log() {
 											required
 											className="block w-full rounded-t-md border-0 py-1.5   ring-1 ring-inset ring-gray-300 placeholder:  focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											placeholder="Usuario"
+											onChange={(e) => setUserLog(e.target.value)}
 										/>
 									</div>
 									<div>
@@ -141,11 +168,12 @@ export default function Log() {
 										<input
 											id="contraseña"
 											name="contraseña"
-											type="contraseña"
+											type="password"
 											autoComplete="current-password"
 											required
 											className="block w-full rounded-b-md border-0 py-1.5   ring-1 ring-inset ring-gray-300 placeholder:  focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											placeholder="Contraseña"
+											onChange={(e) => setPassLog(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -173,6 +201,7 @@ export default function Log() {
                       py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
                       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+										onClick={log}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">
 											<LockClosedIcon
