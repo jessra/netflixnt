@@ -3,30 +3,25 @@ import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
 
 export default function SwitchDarkMode() {
-	const [darkMode, setDarkMode] = useState(false);
+	const [darkMode, setDarkMode] = useState(localStorage.getItem('color-theme') == 'dark' ? true : false);
+	// console.log(darkMode);
 	useEffect(() => {
+		console.log(darkMode);
 		if ('color-theme' in localStorage && localStorage.getItem('color-theme') == 'dark') {
 			document.documentElement.classList.add('dark');
 			window.matchMedia('(prefers-color-scheme: dark)').matches;
 			setDarkMode(true);
-
-			console.log('estaba creado y se guardo dark');
-			console.log(darkMode);
 		}
 	}, []);
 	function toggleTheme() {
 		if (darkMode) {
-			localStorage.setItem('color-theme', 'dark');
-			document.documentElement.classList.add('dark');
-			window.matchMedia('(prefers-color-scheme: dark)').matches;
-			console.log('se paso a dark');
-			console.log(darkMode);
-		} else {
 			localStorage.setItem('color-theme', 'light');
 			document.documentElement.classList.remove('dark');
 			window.matchMedia('(prefers-color-scheme: light)').matches;
-			console.log('se paso a light');
-			console.log(darkMode);
+		} else {
+			localStorage.setItem('color-theme', 'dark');
+			document.documentElement.classList.add('dark');
+			window.matchMedia('(prefers-color-scheme: dark)').matches;
 		}
 	}
 	return (

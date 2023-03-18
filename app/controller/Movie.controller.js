@@ -169,12 +169,13 @@ exports.findOneMov = async (req, res) => {
 		const fran = await Franquicia.findOne({attributes: ['nameFran'], where: {idFran: mov.franquicia}})
 		const gen = await Genero.findOne({attributes: ['nameGe'], where: {idGe: mov.genero}})
 		const idAct = await MovieActors.findAll({attributes: ['idActorMA'], where: {idMovieMA: mov.idMov}})
+		const rec = await Movie.findAll({attributes: ['idMov', 'head', 'sipnosis', 'fecMov', 'img'], limit: 5, order: [['idMov', 'DESC']]})
 		let data = []
     idAct.forEach(c => {
       data.push(c.dataValues.idActorMA)
     });
 		const act = await Actors.findAll({attributes: ['nameAc'], where: {idAc: data}})
-		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen})
+		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen, rec: rec})
 	} catch (error) {
 		res.send('Ocurrió un error. ' + error)		
 	}
