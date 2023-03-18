@@ -5,7 +5,7 @@ import { useEffect, useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
 export default function VerPelicula() {
-	const { peliSelect, peliculaSelect, activo, crearReview } = useContext(Contexto_Funciones);
+	const { peliSelect, peliculaSelect, activo, crearReview, eliminarPeli } = useContext(Contexto_Funciones);
   const [review, setReview] = useState('')
   const [valor, setValor] = useState(1)
 	function textareaHeight(textarea) {
@@ -45,6 +45,7 @@ export default function VerPelicula() {
 									{({ open }) => (
 										<>
 											<Disclosure.Button className="flex w-full justify-between items-center rounded-lg px-4 py-2 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primario focus-visible:ring-opacity-75">
+												<button type="button" onClick={(e) => eliminarPeli(peliSelect.id, peliculaSelect.img)}>Eliminar</button>
 												<div>
 													<h3 className="text-3xl">{peliSelect.head}</h3>
 													<p className="text-sm">Ver detalles</p>

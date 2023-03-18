@@ -217,7 +217,6 @@ export function Contexto_DataProvider(props) {
   }
 
   function crearReview(user, mov, review, valor) {
-    console.log(mov)
     if (review && valor) {
       http
       .post("/aggreview", {user: user, mov: mov, review: review, valor: valor})
@@ -232,6 +231,19 @@ export function Contexto_DataProvider(props) {
     }
   }
 
+  function eliminarPeli(mov, img) {
+    http
+    .delete(`/eliminar/${mov}/${img}`)
+    .then((response) => {
+      console.log(response.data)
+      listaPeliculas()
+      window.location.href = '/';
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+      // Alert('Ha sucedido un problema', false)
+    });
+  }
   function cerrarSesion() {
     localStorage.removeItem("netflixnt");
     window.location.href = '/Log';
@@ -247,7 +259,8 @@ export function Contexto_DataProvider(props) {
     cerrarSesion,
     peliculaSelect,
     peliSelect,
-    crearReview
+    crearReview,
+    eliminarPeli
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;
