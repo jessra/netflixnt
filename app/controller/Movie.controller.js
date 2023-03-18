@@ -7,6 +7,8 @@ const Genero = db.Genero;
 const Franquicia = db.Franquicia;
 const Actors = db.Actors;
 const MovieActors = db.MovieActors;
+const Review = db.Review;
+const Users = db.Users;
 
 
 exports.create = async (req, name, res) => {
@@ -170,12 +172,19 @@ exports.findOneMov = async (req, res) => {
 		const gen = await Genero.findOne({attributes: ['nameGe'], where: {idGe: mov.genero}})
 		const idAct = await MovieActors.findAll({attributes: ['idActorMA'], where: {idMovieMA: mov.idMov}})
 		const rec = await Movie.findAll({attributes: ['idMov', 'head', 'sipnosis', 'fecMov', 'img'], limit: 5, order: [['idMov', 'DESC']]})
-		let data = []
+		const rev = await Review.findAll({where: {idMovRev: req.params.id}})
+
+		let dataAct = []
     idAct.forEach(c => {
-      data.push(c.dataValues.idActorMA)
+      dataAct.push(c.dataValues.idActorMA)
     });
-		const act = await Actors.findAll({attributes: ['nameAc'], where: {idAc: data}})
-		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen, rec: rec})
+		let dataRev = []
+    rev.forEach(c => {
+      dataRev.push(c.dataValues.idUserRev)
+    });
+		const user = await Users.findAll({attributes: ['name', 'img', 'idUser'], where: {idUser: dataRev}})
+		const act = await Actors.findAll({attributes: ['nameAc'], where: {idAc: dataAct}})
+		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen, rec: rec, rev:rev, user: user})
 	} catch (error) {
 		res.send('Ocurrió un error. ' + error)		
 	}

@@ -179,6 +179,22 @@ export function Contexto_DataProvider(props) {
     .post(`/movie/${id}`)
     .then(response => {
       const fec = response.data.mov.fecMov.split('T')
+      let rev = []
+      if (response.data.rev) {
+        response.data.rev.forEach((r) => {
+          const user = response.data.user.filter(function(u) {
+            return u.idUser == r.idUserRev;
+          })
+          rev.push({
+            id: r.idRev,
+            mov: r.idMovRev,
+            review: r.review,
+            user: user[0].name,
+            img: user[0].img,
+            valor: r.valorRev
+          })
+        })
+      }
       let mov = {
         id: response.data.mov.idMov,
         head: response.data.mov.head,
@@ -190,13 +206,30 @@ export function Contexto_DataProvider(props) {
         img: response.data.mov.img,
         link: response.data.mov.link,
         actors: response.data.act,
-        recomendacion: response.data.rec
+        recomendacion: response.data.rec,
+        reviews: rev
       }
       setPeliSelect(mov)
     })
     .catch(e => {
       console.log(e)
     })
+  }
+
+  function crearReview(user, mov, review, valor) {
+    console.log(mov)
+    if (review && valor) {
+      http
+      .post("/aggreview", {user: user, mov: mov, review: review, valor: valor})
+      .then((response) => {
+        console.log(response.data)
+        peliculaSelect(mov)
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+        // Alert('Ha sucedido un problema', false)
+      });
+    }
   }
 
   function cerrarSesion() {
@@ -213,7 +246,8 @@ export function Contexto_DataProvider(props) {
     activo,
     cerrarSesion,
     peliculaSelect,
-    peliSelect
+    peliSelect,
+    crearReview
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

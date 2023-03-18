@@ -6,10 +6,11 @@ const Publication = db.Publication;
     try {
       await Review.create({
         idUserRev: req.body.user,
-        idPeliRev: req.body.peli,
+        idMovRev: req.body.mov,
         review: req.body.review,
         valorRev: req.body.valor
       })
+      res.send({msj: 'Agregado correctamente'})
     } catch (error) {
       
     }
