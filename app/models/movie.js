@@ -30,6 +30,10 @@ module.exports = (sequelize, Sequelize) => {
 		type: Sequelize.TEXT,
 		allowNull: false
 		},
+		link: {
+		type: Sequelize.TEXT,
+		allowNull: false
+		},
 		fecMov: {
 			type: Sequelize.DATE,
 			allowNull: false
