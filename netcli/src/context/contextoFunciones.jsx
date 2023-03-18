@@ -189,7 +189,8 @@ export function Contexto_DataProvider(props) {
         fecMov: fec[0],
         img: response.data.mov.img,
         link: response.data.mov.link,
-        actors: response.data.act
+        actors: response.data.act,
+        recomendacion: response.data.rec
       }
       setPeliSelect(mov)
     })
