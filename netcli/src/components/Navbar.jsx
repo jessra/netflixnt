@@ -1,13 +1,15 @@
-import { Disclosure, Dialog, Transition, Menu } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Disclosure, Dialog, Transition, Menu } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Fragment, useState } from 'react';
+import { Outlet, Link, useLocation } from 'react-router-dom';
+import SwitchDarkMode from './SwitchDarkMode';
 
 function classNames(...classes) {
-	return classes.filter(Boolean).join(" ");
+	return classes.filter(Boolean).join(' ');
 }
 export default function Navbar() {
 	const [isOpenModal, setisOpenModal] = useState(false);
+	const location = useLocation();
 
 	function closeModal() {
 		setisOpenModal(false);
@@ -16,12 +18,11 @@ export default function Navbar() {
 	function openModal() {
 		setisOpenModal(true);
 	}
-	const location = useLocation();
 	return (
 		<>
 			<Disclosure
 				as="nav"
-				className="sticky w-full top-0 bg-zinc-900 bg-white z-50 manrope border-b-2 border-stone"
+				className="sticky w-full top-0 bg-white dark:bg-black-soft z-50 manrope border-b-2 border-stone dark:border-black-medium"
 			>
 				{({ open }) => (
 					<>
@@ -55,33 +56,22 @@ export default function Navbar() {
 											<Link
 												to="/"
 												className={classNames(
-													location.pathname == "/" && !isOpenModal
-														? "bg-primario text-white"
-														: "  hover:bg-gray-700 hover:text-primario",
-													"rounded-md px-3 py-2 text-sm font-bold tracking-widest"
+													location.pathname == '/' && !isOpenModal
+														? 'bg-primario text-white'
+														: 'hover:bg-gray-700 hover:text-primario',
+													'rounded-md px-3 py-2 text-sm font-bold tracking-widest dark:text-white'
 												)}
 											>
 												Inicio
-											</Link>
-											<Link
-												to="/Perfil"
-												className={classNames(
-													location.pathname == "/Perfil" && !isOpenModal
-														? "bg-primario text-white"
-														: "  hover:bg-gray-700 hover:text-primario",
-													"rounded-md px-3 py-2 text-sm font-bold tracking-widest"
-												)}
-											>
-												Perfil
 											</Link>
 											<button
 												type="button"
 												onClick={openModal}
 												className={classNames(
 													isOpenModal
-														? "bg-primario text-white"
-														: "  hover:bg-gray-700 hover:text-primario",
-													"rounded-md px-3 py-2 text-sm font-bold tracking-widest focus:outline-none"
+														? 'bg-primario text-white'
+														: '  hover:bg-gray-700 hover:text-primario',
+													'rounded-md px-3 py-2 text-sm font-bold tracking-widest focus:outline-none dark:text-white'
 												)}
 											>
 												Crear
@@ -89,9 +79,16 @@ export default function Navbar() {
 										</div>
 									</div>
 								</div>
+								<div className="py-16">
+									<SwitchDarkMode />
+								</div>
 								<Menu as="div" className="ml-3">
 									<div>
-										<Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+										<Menu.Button className="
+												flex max-w-xs items-center rounded-full text-sm focus:outline-none
+												focus:ring-2 focus:ring-primario focus:ring-offset-2 focus:ring-offset-muted
+											"
+										>
 											<img
 												className="h-8 w-8 rounded-full"
 												src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -108,14 +105,14 @@ export default function Navbar() {
 										leaveFrom="transform opacity-100 scale-100"
 										leaveTo="transform opacity-0 scale-95"
 									>
-										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-black-medium dark:text-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 											<Menu.Item>
 												{({ active }) => (
 													<Link
 														href="/Log"
 														className={classNames(
-															active ? "bg-gray-100" : "",
-															"block px-4 py-2 text-sm "
+															active ? 'bg-gray-100' : '',
+															'block px-4 py-2 text-sm '
 														)}
 													>
 														Cerrar sesión
@@ -133,24 +130,13 @@ export default function Navbar() {
 								<Link
 									to="/"
 									className={classNames(
-										location.pathname == "/" && !isOpenModal
-											? "bg-primario text-white"
-											: "  hover:bg-gray-700 hover:text-primario",
-										"rounded-md px-3 py-2 text-sm font-bold tracking-widest block"
+										location.pathname == '/' && !isOpenModal
+											? 'bg-primario text-white'
+											: '  hover:bg-gray-700 hover:text-primario',
+										'rounded-md px-3 py-2 text-sm font-bold tracking-widest block'
 									)}
 								>
 									Inicio
-								</Link>
-								<Link
-									to="/Perfil"
-									className={classNames(
-										location.pathname == "/Perfil" && !isOpenModal
-											? "bg-primario text-white"
-											: "  hover:bg-gray-700 hover:text-primario",
-										"rounded-md px-3 py-2 text-sm font-bold tracking-widest block"
-									)}
-								>
-									Perfil
 								</Link>
 							</div>
 						</Disclosure.Panel>
@@ -163,9 +149,9 @@ export default function Navbar() {
 									}}
 									className={classNames(
 										isOpenModal
-											? "bg-primario text-white"
-											: "  hover:bg-gray-700 hover:text-primario",
-										"w-full rounded-md px-3 py-2 text-left text-sm font-bold tracking-widest focus:outline-none"
+											? 'bg-primario text-white'
+											: '  hover:bg-gray-700 hover:text-primario',
+										'w-full rounded-md px-3 py-2 text-left text-sm font-bold tracking-widest focus:outline-none'
 									)}
 								>
 									Crear
