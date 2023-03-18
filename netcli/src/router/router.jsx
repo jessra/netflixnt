@@ -13,7 +13,7 @@ export default function Router() {
 				<Route path="/" element={<Navbar />}>
 					<Route index element={<Inicio />} />
 					<Route path="/Perfil" element={<Perfil />} />
-					<Route path="/ver" element={<VerPelicula />} />
+					<Route path="/Movie/:id" element={<VerPelicula />} />
 				</Route>
 				<Route path="/Log" element={<Log />} />
 				<Route path="*" element={<UndefinedPath />} />

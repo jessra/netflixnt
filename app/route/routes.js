@@ -37,7 +37,7 @@ module.exports = function(app) {
 
   // Movies
   app.get('/api/movies', movie.findAll);
-  app.get('/api/movie/:id', movie.findOneMov)
+  app.post('/api/movie/:id', movie.findOneMov)
   app.post('/api/aggmovies', verify, upload.single('file'), function (req, res) {
     console.log(req.file)
     movie.create(req, name, res)

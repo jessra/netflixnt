@@ -5,6 +5,7 @@ export const Contexto_Funciones = createContext();
 export function Contexto_DataProvider(props) {  
   const [activo, setActivo] = useState({user: {img: '', name: ''}});
   const [peli, setPeli] = useState([]);
+  const [peliSelect, setPeliSelect] = useState([])
   // function Alert(men, tipo) {
   //   if (tipo) {
   //     document.getElementById('notificacion').classList.add('color-success');
@@ -173,6 +174,30 @@ export function Contexto_DataProvider(props) {
     }
   }
 
+  function peliculaSelect(id) {
+    http
+    .post(`/movie/${id}`)
+    .then(response => {
+      const fec = response.data.mov.fecMov.split('T')
+      let mov = {
+        id: response.data.mov.idMov,
+        head: response.data.mov.head,
+        sipnosis: response.data.mov.sipnosis,
+        director: response.data.dir.nameDi,
+        genero: response.data.gen.nameGe,
+        franquicia: response.data.fran.nameFran,
+        fecMov: fec[0],
+        img: response.data.mov.img,
+        link: response.data.mov.link,
+        actors: response.data.act
+      }
+      setPeliSelect(mov)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
+
   function cerrarSesion() {
     localStorage.removeItem("netflixnt");
     window.location.href = '/Log';
@@ -185,7 +210,9 @@ export function Contexto_DataProvider(props) {
     registrarPelicula,
     peli,
     activo,
-    cerrarSesion
+    cerrarSesion,
+    peliculaSelect,
+    peliSelect
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

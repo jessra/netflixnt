@@ -1,6 +1,7 @@
 import Filtros from '../components/Filtros'
 import { useContext } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
+import { Outlet, Link, useLocation } from "react-router-dom";
 
 export default function Example() {
 	const { peli } = useContext(Contexto_Funciones);
@@ -26,10 +27,12 @@ export default function Example() {
 								<div className="mt-4 flex justify-between">
 									<div>
 										<h3 className="text-sm ">
-											<a href='/ver'>
+											<Link to={`/Movie/` + pelicula.id}>
 												<span aria-hidden="true" className="absolute inset-0" />
 												{pelicula.head}
-											</a>
+											</Link>
+											{/* <a href={`/Movie/` + pelicula.id}>
+											</a> */}
 										</h3>
 										<p className="mt-1 text-sm ">{pelicula.sipnosis}</p>
 									</div>
