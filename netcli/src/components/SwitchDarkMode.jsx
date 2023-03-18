@@ -4,9 +4,7 @@ import { useState, useEffect } from 'react';
 
 export default function SwitchDarkMode() {
 	const [darkMode, setDarkMode] = useState(localStorage.getItem('color-theme') == 'dark' ? true : false);
-	// console.log(darkMode);
 	useEffect(() => {
-		console.log(darkMode);
 		if ('color-theme' in localStorage && localStorage.getItem('color-theme') == 'dark') {
 			document.documentElement.classList.add('dark');
 			window.matchMedia('(prefers-color-scheme: dark)').matches;

@@ -4,29 +4,23 @@ import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { useEffect, useContext, useState } from "react";
 import { Contexto_Funciones } from "../context/contextoFunciones";
 
-const comentarios = [
-	{
-		usuario: "Leslie Alexander",
-		mensaje:
-			"Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.",
-		imageUrl:
-			"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-	},
-	// More people...
-];
-
 export default function VerPelicula() {
-	const { peliSelect, peliculaSelect, activo } = useContext(Contexto_Funciones);
+	const { peliSelect, peliculaSelect, activo, crearReview, eliminarPeli } = useContext(Contexto_Funciones);
   const [review, setReview] = useState('')
-  const [valor, setValor] = useState(0)
+  const [valor, setValor] = useState(1)
 	function textareaHeight(textarea) {
 		if (textarea) {
 			textarea.style.height = `${textarea.scrollHeight}px`;
 		}
-		setReview(textarea.target.value)
 	}
 	function formatearFecha(fec) {
 		return fec.split('T')[0]
+	}
+	function limpiarCampos() {
+		if (review) {
+			setReview('')
+			setValor(1)
+		}
 	}
 	const location = useLocation()
 	const route = location.pathname.split("/")[2];
@@ -51,6 +45,7 @@ export default function VerPelicula() {
 									{({ open }) => (
 										<>
 											<Disclosure.Button className="flex w-full justify-between items-center rounded-lg px-4 py-2 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primario focus-visible:ring-opacity-75">
+												<button type="button" onClick={(e) => eliminarPeli(peliSelect.id, peliculaSelect.img)}>Eliminar</button>
 												<div>
 													<h3 className="text-3xl">{peliSelect.head}</h3>
 													<p className="text-sm">Ver detalles</p>
@@ -118,19 +113,19 @@ export default function VerPelicula() {
 								</Disclosure>
 								<p className="mt-4">Comentarios</p>
 								<ul>
-									{comentarios.map((comentario) => (
-										<li key={comentario.name} className="my-6 divide-y divide-muted-neutral">
+									{peliSelect.reviews.map((comentario) => (
+										<li key={comentario.id} className="my-6 divide-y divide-muted-neutral">
 											<div className="flex gap-x-6">
 												<img
 													className="h-16 w-16 rounded-full"
-													src={comentario.imageUrl}
+													src={`../src/peliculas/` + comentario.img}
 													alt=""
 												/>
 												<div>
 													<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark">
-														{comentario.usuario}
+														{comentario.user} - {comentario.valor}
 													</p>
-													<p className="text-sm">{comentario.mensaje}</p>
+													<p className="text-sm">{comentario.review}</p>
 												</div>
 											</div>
 										</li>
@@ -154,13 +149,20 @@ export default function VerPelicula() {
 													id="newComentario"
 													cols="30"
 													rows="10"
-													// value=""
+													value={review}
 													onChange={(e) => {
 														textareaHeight(document.querySelector("textarea"));
+														setReview(e.target.value)
 													}}
 													placeholder="Comparte que piensas... 🖋️"
 												></textarea>
 											</div>
+											<button 
+												onClick={(e) => {
+													crearReview(activo.user.idUser, peliSelect.id, review, valor);
+													limpiarCampos()
+												}}
+											> Enviar </button>
 										</div>
 									</li>
 								</ul>

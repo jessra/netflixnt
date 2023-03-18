@@ -61,8 +61,8 @@ module.exports = function(app) {
   // app.get('/api/category', category.findAll);
   // app.post('/api/dupcategory', category.findOrCreate)
   
-  // Favs
-  // app.post('/api/favoritos', verify, favs.findAll);
+  // Review
+  app.post('/api/aggreview', review.create);
   // app.post('/api/favorito', verify, function (req, res) {
   //   favs.create(req, res)
   // })

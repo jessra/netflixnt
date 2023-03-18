@@ -179,6 +179,22 @@ export function Contexto_DataProvider(props) {
     .post(`/movie/${id}`)
     .then(response => {
       const fec = response.data.mov.fecMov.split('T')
+      let rev = []
+      if (response.data.rev) {
+        response.data.rev.forEach((r) => {
+          const user = response.data.user.filter(function(u) {
+            return u.idUser == r.idUserRev;
+          })
+          rev.push({
+            id: r.idRev,
+            mov: r.idMovRev,
+            review: r.review,
+            user: user[0].name,
+            img: user[0].img,
+            valor: r.valorRev
+          })
+        })
+      }
       let mov = {
         id: response.data.mov.idMov,
         head: response.data.mov.head,
@@ -190,7 +206,8 @@ export function Contexto_DataProvider(props) {
         img: response.data.mov.img,
         link: response.data.mov.link,
         actors: response.data.act,
-        recomendacion: response.data.rec
+        recomendacion: response.data.rec,
+        reviews: rev
       }
       setPeliSelect(mov)
     })
@@ -199,6 +216,34 @@ export function Contexto_DataProvider(props) {
     })
   }
 
+  function crearReview(user, mov, review, valor) {
+    if (review && valor) {
+      http
+      .post("/aggreview", {user: user, mov: mov, review: review, valor: valor})
+      .then((response) => {
+        console.log(response.data)
+        peliculaSelect(mov)
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+        // Alert('Ha sucedido un problema', false)
+      });
+    }
+  }
+
+  function eliminarPeli(mov, img) {
+    http
+    .delete(`/eliminar/${mov}/${img}`)
+    .then((response) => {
+      console.log(response.data)
+      listaPeliculas()
+      window.location.href = '/';
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+      // Alert('Ha sucedido un problema', false)
+    });
+  }
   function cerrarSesion() {
     localStorage.removeItem("netflixnt");
     window.location.href = '/Log';
@@ -213,7 +258,9 @@ export function Contexto_DataProvider(props) {
     activo,
     cerrarSesion,
     peliculaSelect,
-    peliSelect
+    peliSelect,
+    crearReview,
+    eliminarPeli
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;
