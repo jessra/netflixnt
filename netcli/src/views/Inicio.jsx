@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import Filtros from '../components/Filtros';
-import { ThemeContext } from '../context/ThemeContex';
 
 const peliculas = [
   {
@@ -67,16 +65,15 @@ const peliculas = [
 ];
 
 export default function Example() {
-  const theme = useContext(ThemeContext);
   return (
-    <div style={{ background: theme.background, color: theme.color }}>
+    <div>
       <Filtros />
       <div className='mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8'>
-        <h3 className='text-2xl font-bold tracking-tight  '>Películas</h3>
+        <h3 className='text-2xl font-bold tracking-tight dark:text-white'>Películas</h3>
 
         <div className='mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
           {peliculas.map((pelicula) => (
-            <div key={pelicula.id} className='group relative'>
+            <div key={pelicula.id} className='group relative p-3 rounded-lg bg-stone-light dark:bg-black-medium'>
               <div className='min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80'>
                 <img
                   src={pelicula.imageSrc}
@@ -86,15 +83,15 @@ export default function Example() {
               </div>
               <div className='mt-4 flex justify-between'>
                 <div>
-                  <h3 className='text-sm '>
+                  <p className='text-xl dark:text-white'>
                     <a href={pelicula.href}>
                       <span aria-hidden='true' className='absolute inset-0' />
                       {pelicula.name}
                     </a>
-                  </h3>
-                  <p className='mt-1 text-sm '>{pelicula.descripcion}</p>
+                  </p>
+                  <p className='mt-1 text-sm dark:text-muted'>{pelicula.descripcion}</p>
                 </div>
-                <p className='text-sm font-medium  '>{pelicula.fecha}</p>
+                <p className='text-sm font-medium dark:text-muted'>{pelicula.fecha}</p>
               </div>
             </div>
           ))}
