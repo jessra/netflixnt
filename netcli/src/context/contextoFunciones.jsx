@@ -81,6 +81,7 @@ export function Contexto_DataProvider(props) {
         franquicia: fran[0].nameFran,
         fecMov: fec[0],
         img: m.img,
+        link: m.link,
         actors: actor
       })
     })
@@ -143,9 +144,8 @@ export function Contexto_DataProvider(props) {
 		}
   }
 
-  function registrarPelicula(head, di, fran, gen, fecMov, sip, img) {
-    console.log(head && di && fran && gen && fecMov && sip && img.data)
-    if (head && di && fran && gen && fecMov && sip && img.data) {
+  function registrarPelicula(head, di, fran, gen, fecMov, sip, img, tra) {
+    if (head && di && fran && gen && fecMov && sip && img.data && tra) {
 			let formData = new FormData();
 			formData.append("file", img.data);
 			formData.append("head", head);
@@ -154,6 +154,7 @@ export function Contexto_DataProvider(props) {
 			formData.append("genero", gen);
 			formData.append("fecMov", fecMov);
 			formData.append("sipnosis", sip);
+			formData.append("link", tra);
 			let header = {
 				headers: {
           authorization: `Bearer ${activo.token}`,
@@ -174,7 +175,7 @@ export function Contexto_DataProvider(props) {
 
   function cerrarSesion() {
     localStorage.removeItem("netflixnt");
-    window.location.href = '/LogIn';
+    window.location.href = '/Log';
   }
 
   return <Contexto_Funciones.Provider value={{
@@ -182,7 +183,9 @@ export function Contexto_DataProvider(props) {
     iniciarCuenta,
     registrarCuenta,
     registrarPelicula,
-    peli
+    peli,
+    activo,
+    cerrarSesion
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;

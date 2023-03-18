@@ -8,7 +8,7 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(" ");
 }
 export default function Navbar() {
-	const { registrarPelicula } = useContext(Contexto_Funciones);
+	const { registrarPelicula, activo, cerrarSesion } = useContext(Contexto_Funciones);
 	const [isOpenModal, setisOpenModal] = useState(false);
 	const [head, setHead] = useState('');
 	const [di, setDi] = useState('');
@@ -17,6 +17,7 @@ export default function Navbar() {
 	const [fecMov, setFecMov] = useState('');
 	const [sip, setSip] = useState('');
 	const [img, setImg] = useState({preview: '', data: ''});
+	const [tra, setTra] = useState('');
   const cambioImg = (e) => {
     const img2 = {
       preview: URL.createObjectURL(e.target.files[0]),
@@ -105,7 +106,7 @@ export default function Navbar() {
 										<Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
 											<img
 												className="h-8 w-8 rounded-full"
-												src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+												src={`../src/peliculas/` + activo.user.img}
 												alt=""
 											/>
 										</Menu.Button>
@@ -122,15 +123,15 @@ export default function Navbar() {
 										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 											<Menu.Item>
 												{({ active }) => (
-													<Link
-														href="/Log"
+													<button
+														onClick={(e) => cerrarSesion()}
 														className={classNames(
 															active ? "bg-gray-100" : "",
 															"block px-4 py-2 text-sm "
 														)}
 													>
 														Cerrar sesión
-													</Link>
+													</button>
 												)}
 											</Menu.Item>
 										</Menu.Items>
@@ -280,6 +281,22 @@ export default function Navbar() {
 										</div>
 										<div className="col-span-2 sm:col-span-1">
 											<label
+												htmlFor="trailer"
+												className="block text-sm font-medium leading-6"
+											>
+												Trailer
+											</label>
+											<input
+												type="text"
+												name="trailer"
+												id="trailer"
+												autoComplete="given-name"
+												onChange={(e) => setTra(e.target.value)}
+												className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+											/>
+										</div>
+										<div className="col-span-2 sm:col-span-1">
+											<label
 												htmlFor="director"
 												className="block text-sm font-medium leading-6"
 											>
@@ -362,7 +379,7 @@ export default function Navbar() {
 
 									<div className="mt-4">
 										<button
-											onClick={(e) => registrarPelicula(head, di, fran, gen, fecMov, sip, img)}
+											onClick={(e) => registrarPelicula(head, di, fran, gen, fecMov, sip, img, tra)}
 											className="
                       inline-flex float-right justify-center rounded-md
                       py-2 px-3 text-sm font-semibold text-white hover:text-white

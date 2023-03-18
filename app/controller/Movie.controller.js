@@ -45,7 +45,8 @@ exports.create = async (req, name, res) => {
 			genero: gen.idGe,
 			franquicia: fran.idFran,
 			fecMov: req.body.fecMov,
-			img: name
+			img: name,
+			link: req.body.link,
 		})
 		for await (const act of req.body.actors){
 			const [actor, creactor] = await Actors.findOrCreate({
@@ -114,6 +115,9 @@ exports.update = async (req, name, res) => {
 		}
 		if (req.body.fecMov) {
 			await Movie.update({ fecMov: req.body.fecMov }, { where: {idMov: req.body.id} })
+		}
+		if (req.body.link) {
+			await Movie.update({ link: req.body.link }, { where: {idMov: req.body.id} })
 		}
 		if (name) {
 			await Movie.update({ img: name }, { where: {idMov: req.body.id} })
