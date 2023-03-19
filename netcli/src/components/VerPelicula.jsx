@@ -183,62 +183,64 @@ export default function VerPelicula() {
 											</div>
 										</li>
 									))}
-									<li className="my-6 divide-y divide-muted-neutral">
-										<div className="flex gap-x-6">
-											<img
-												className="h-16 w-16 rounded-full"
-												src={`../src/peliculas/` + activo.user.img}
-												alt=""
-											/>
-											<div className="w-full">
-												<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark">
-													{activo.user.name}
-												</p>
-												<input
-													type="number"
-													min="1"
-													max="5"
-													name=""
-													value={valor}
-													onChange={(e) => setValor(e.target.value)}
+									{!activo.token ? 
+										(<li className="my-6 divide-y divide-muted-neutral">
+											<div className="flex gap-x-6">
+												<img
+													className="h-16 w-16 rounded-full"
+													src={`../src/peliculas/` + activo.user.img}
+													alt=""
 												/>
-												<textarea
-													required
-													className="
-														resize-none block h-10 w-full rounded-t-md
-														py-1.5 px-3 border-0 focus-visible:outline-0 sm:text-md sm:leading-6
-														bg-white-bone dark:bg-black-medium dark:text-white
-														focus-visible
-													"
-													name="newComentario"
-													id="newComentario"
-													cols="30"
-													rows="10"
-													value={review}
-													onChange={(e) => {
-														textareaHeight(document.querySelector('textarea'));
-														setReview(e.target.value);
+												<div className="w-full">
+													<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark">
+														{activo.user.name}
+													</p>
+													<input
+														type="number"
+														min="1"
+														max="5"
+														name=""
+														value={valor}
+														onChange={(e) => setValor(e.target.value)}
+													/>
+													<textarea
+														required
+														className="
+															resize-none block h-10 w-full rounded-t-md
+															py-1.5 px-3 border-0 focus-visible:outline-0 sm:text-md sm:leading-6
+															bg-white-bone dark:bg-black-medium dark:text-white
+															focus-visible
+														"
+														name="newComentario"
+														id="newComentario"
+														cols="30"
+														rows="10"
+														value={review}
+														onChange={(e) => {
+															textareaHeight(document.querySelector('textarea'));
+															setReview(e.target.value);
+														}}
+														placeholder="Comparte que piensas... 🖋️"
+													></textarea>
+												</div>
+												<button
+													onClick={(e) => {
+														crearReview(
+															activo.user.idUser,
+															peliSelect.mov.id,
+															review,
+															valor
+														);
+														limpiarCampos();
 													}}
-													placeholder="Comparte que piensas... 🖋️"
-												></textarea>
+													className="self-end rounded-md py-2 px-3 text-sm font-semibold text-white bg-primario-light hover:bg-primario focus-visible:outline"
+												>
+													{' '}
+													Enviar{' '}
+												</button>
 											</div>
-											<button
-												onClick={(e) => {
-													crearReview(
-														activo.user.idUser,
-														peliSelect.mov.id,
-														review,
-														valor
-													);
-													limpiarCampos();
-												}}
-												className="self-end rounded-md py-2 px-3 text-sm font-semibold text-white bg-primario-light hover:bg-primario focus-visible:outline"
-											>
-												{' '}
-												Enviar{' '}
-											</button>
-										</div>
-									</li>
+										</li>) : ('')
+									}
 								</ul>
 							</div>
 							<div className="flex h-full flex-col bg-white dark:bg-black-medium shadow-xl">

@@ -12,7 +12,7 @@ export default function Crear({isOpenModal, Modal}) {
 	const [di, setDi] = useState('');
 	const [fran, setFran] = useState('');
 	const [gen, setGen] = useState('');
-	const [fecMov, setFecMov] = useState('');
+	const [fecMov, setFecMov] = useState(new Date().getFullYear() + "-0"+ new Date().getMonth()+ "-" +new Date().getDate());
 	const [sip, setSip] = useState('');
 	const [img, setImg] = useState({ preview: '', data: '' });
 	const [tra, setTra] = useState('');
