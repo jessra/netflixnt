@@ -46,7 +46,7 @@ export default function VerPelicula() {
 									{({ open }) => (
 										<>
 											<Disclosure.Button className="flex w-full justify-between items-center rounded-lg px-4 py-2 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primario focus-visible:ring-opacity-75">
-												<div className='flex-auto text-center'>
+												<div className="flex-auto text-center">
 													<p className="text-4xl text-bold dark:text-white">
 														{peliSelect.head}
 													</p>
@@ -211,31 +211,33 @@ export default function VerPelicula() {
 									<div className="flow-root">
 										<ul role="list" className="divide-y divide-muted-neutral">
 											{peliSelect.recomendacion.map((pelicula) => (
-												<li
-													key={pelicula.idMov}
-													className="flex flex-col md:flex-row lg:flex-col xl:flex-row md:items-center xl:items-start py-6"
-												>
-													<div className="h-40 md:w-32 flex-shrink-0 overflow-hidden rounded-md border border-muted-neutral">
-														<img
-															src={`../src/peliculas/` + pelicula.img}
-															alt={`Imagen película ` + pelicula.head}
-															className="h-full w-full object-cover object-center"
-														/>
-													</div>
-													<div className="ml-4 flex flex-1 flex-col">
-														<div>
-															<div className="flex justify-between text-base font-medium ">
-																<p className="font-bold dark:text-white">
-																	<Link to={`/Movie/` + pelicula.idMov}></Link>
-																	{pelicula.head}
-																</p>
-																<p className="ml-4 dark:text-muted">
-																	{formatearFecha(pelicula.fecMov)}
+												<li key={pelicula.idMov} className="">
+													<Link to={`/Movie/` + pelicula.idMov}>
+														<div className="flex flex-col md:flex-row lg:flex-col xl:flex-row md:items-center xl:items-start py-6">
+															<div className="h-40 md:w-32 flex-shrink-0 overflow-hidden rounded-md border border-muted-neutral">
+																<img
+																	src={`../src/peliculas/` + pelicula.img}
+																	alt={`Imagen película ` + pelicula.head}
+																	className="h-full w-full object-cover object-center"
+																/>
+															</div>
+															<div className="ml-4 flex flex-1 flex-col">
+																<div>
+																	<div className="flex justify-between text-base font-medium ">
+																		<p className="font-bold dark:text-white">
+																			{pelicula.head}
+																		</p>
+																		<p className="ml-4 dark:text-muted">
+																			{formatearFecha(pelicula.fecMov)}
+																		</p>
+																	</div>
+																</div>
+																<p className="dark:text-white-bone">
+																	{pelicula.sipnosis}
 																</p>
 															</div>
 														</div>
-														<p className="dark:text-white-bone">{pelicula.sipnosis}</p>
-													</div>
+													</Link>
 												</li>
 											))}
 										</ul>
