@@ -20,7 +20,10 @@ export const movieList = (id) => (dispatch) => {
   .post(`/movie/${id}`)
   .then(response => {
     if (response.data.r) {
-      const fec = response.data.mov.fecMov.split('T')
+      let fec = []
+      if (response.data.mov.fecMov) {
+        fec = response.data.mov.fecMov.split('T')
+      }
       let rev = []
       if (response.data.rev) {
         response.data.rev.forEach((r) => {

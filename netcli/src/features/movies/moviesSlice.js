@@ -45,7 +45,10 @@ export const ordenarDatosPeli = (data) => (dispatch) => {
         return ma.idMovieMA == m.idMov && ma.idActorMA == a.idAc
       })
     })
-    const fec = m.fecMov.split('T')
+    let fec = []
+    if (m.fecMov) {
+      fec = m.fecMov.split('T')
+    }
     mov.push({
       id: m.idMov,
       head: m.head,

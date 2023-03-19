@@ -153,9 +153,11 @@ export default function VerPelicula() {
 															<dt className="text-sm font-bold text-stone-dark dark:text-stone">
 																Actores
 															</dt>
-															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{/* {peliSelect.mov.actors} */}
-															</dd>
+															{peliSelect.mov.actors.map((act) => (
+																<dd key={act.nameAc} className="mt-1 text-sm sm:col-span-2 sm:mt-0">
+																	{ act.nameAc}
+																</dd>
+															))}
 														</div>
 													</dl>
 												</div>

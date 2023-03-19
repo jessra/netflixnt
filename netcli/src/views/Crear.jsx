@@ -36,7 +36,7 @@ export default function Crear({isOpenModal, Modal}) {
 			formData.append("fecMov", fecMov);
 			formData.append("sipnosis", sip);
 			formData.append("link", tra);
-			formData.append("actors", actores);
+			formData.append("actors", JSON.stringify(actores));
 			let header = {
 				headers: {
           authorization: `Bearer ${activo.token}`,
