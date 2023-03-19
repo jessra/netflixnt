@@ -1,10 +1,13 @@
-import { Fragment, useState, useContext } from 'react';
-import { Contexto_Funciones } from '../context/contextoFunciones';
+import { Fragment, useState } from "react";
 import { MinusCircleIcon, XMarkIcon, PhotoIcon } from '@heroicons/react/24/outline';
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition } from "@headlessui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesList } from "../features/movies/moviesSlice";
+import http from "../http-common"
 
-export default function Crear({ isOpenModal, Modal }) {
-	const { registrarPelicula } = useContext(Contexto_Funciones);
+export default function Crear({isOpenModal, Modal}) {
+	const dispatch = useDispatch()
+	const activo = useSelector(state => state.activo)
 	const [head, setHead] = useState('');
 	const [di, setDi] = useState('');
 	const [fran, setFran] = useState('');
@@ -13,20 +16,59 @@ export default function Crear({ isOpenModal, Modal }) {
 	const [sip, setSip] = useState('');
 	const [img, setImg] = useState({ preview: '', data: '' });
 	const [tra, setTra] = useState('');
-	const [actores, aggActor] = useState([
-		{
-			id: 1,
-			nombre: '',
-		},
-	]);
-	let nextId = 0;
-	const cambioImg = (e) => {
-		const img2 = {
-			preview: URL.createObjectURL(e.target.files[0]),
-			data: e.target.files[0],
-		};
-		setImg(img2);
-	};
+	const [actores, aggActor] = useState([{id: 1, nombre: '',},]);
+	const [nextId, aggnextId] = useState(2);
+  const cambioImg = (e) => {
+    const img2 = {
+      preview: URL.createObjectURL(e.target.files[0]),
+      data: e.target.files[0],
+    }	
+    setImg(img2)
+  }
+  function registrarPelicula(head, di, fran, gen, fecMov, sip, img, tra, actores) {
+    if (head && di && fran && gen && fecMov && sip && img.data && tra && actores) {
+			let formData = new FormData();
+			formData.append("file", img.data);
+			formData.append("head", head);
+			formData.append("director", di);
+			formData.append("franquicia", fran);
+			formData.append("genero", gen);
+			formData.append("fecMov", fecMov);
+			formData.append("sipnosis", sip);
+			formData.append("link", tra);
+			formData.append("actors", actores);
+			let header = {
+				headers: {
+          authorization: `Bearer ${activo.token}`,
+					'Content-Type': 'multipart/form-data',
+				},
+			};
+			http
+			.post("http://localhost:8081/api/aggmovies", formData, header)
+			.then((response) => {
+				if (response.data.r) {
+					dispatch(moviesList())
+					setHead(' ')
+					setDi(' ')
+					setFran(' ')
+					setGen(' ')
+					setFecMov(' ')
+					setSip(' ')
+					setTra(' ')
+					setImg({ preview: '', data: '' })
+					aggActor([{id: 1, nombre: '',},])
+					aggnextId(2)
+					Modal
+				} else {
+					console.log(response.data.msg);
+				}
+			})
+			.catch((error) => {
+				console.log('Error:', error);
+				// Alert('Ha sucedido un problema', false)
+			});
+    }
+  }
 	return (
 		<>
 			<Transition appear show={isOpenModal} as={Fragment}>
@@ -283,7 +325,7 @@ export default function Crear({ isOpenModal, Modal }) {
 															aggActor(
 																actores.map((a) => {
 																	if (a.id == actor.id) {
-																		return { ...a, nombre: e };
+																		return { ...a, nombre: e.target.value };
 																	} else {
 																		return a;
 																	}
@@ -316,7 +358,7 @@ export default function Crear({ isOpenModal, Modal }) {
 									</div>
 									<div className="mt-4">
 										<button
-											onClick={() => aggActor([...actores, { id: nextId++, nombre: '' }])}
+											onClick={() => {aggActor([...actores, { id: nextId, nombre: '' }]); aggnextId(nextId+1)}}
 											className="w-full block rounded-md dark:text-white-bone
                       py-2 px-3 text-sm font-semibold
                       border-4 border-transparent hover:border-primario
@@ -328,7 +370,7 @@ export default function Crear({ isOpenModal, Modal }) {
 									<div className="mt-4">
 										<button
 											onClick={(e) =>
-												registrarPelicula(head, di, fran, gen, fecMov, sip, img, tra)
+												registrarPelicula(head, di, fran, gen, fecMov, sip, img, tra, actores)
 											}
 											className="
                       w-full block justify-center rounded-md
