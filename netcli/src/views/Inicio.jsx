@@ -31,8 +31,6 @@ export default function Example() {
 												<span aria-hidden="true" className="absolute inset-0" />
 												{pelicula.head}
 											</Link>
-											{/* <a href={`/Movie/` + pelicula.id}>
-                        </a> */}
 										</p>
 										<p className="mt-1 text-sm dark:text-muted">{pelicula.sipnosis}</p>
 									</div>

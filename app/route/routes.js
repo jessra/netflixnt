@@ -1,11 +1,9 @@
 module.exports = function(app) {
   const users = require('../controller/Users.controller.js');
   const movie = require('../controller/Movie.controller.js');
-  const category = require('../controller/Category.controller.js');
+  const genero = require('../controller/Genero.controller.js');
   const review = require('../controller/Review.controller.js');
   const verify = require('../controller/Verify.controller');
-  const jwt = require('jsonwebtoken');
-  const config = require('../config')
   const multer = require("multer");
   let name = '';
   const storage = multer.diskStorage({
@@ -20,15 +18,7 @@ module.exports = function(app) {
   
   const upload = multer({ storage: storage })
 
-  // Token
-  // app.post('/api/token', function (req, res) {
-  //   const token = jwt.sign({ id: req.body.idUser }, config.secret, {
-  //     expiresIn: Date.now() + 60 * 80000
-  //   });
-	// 	res.send({token});
-  // })
   // Users
-  // app.get('/api/users', users.findAll);
   app.post('/api/inituser', users.findOneUse);
   app.post('/api/aggusers', upload.single('file'), function (req, res) {
     console.log(req.file);
@@ -45,11 +35,7 @@ module.exports = function(app) {
   app.post('/api/editmovies', upload.single('file'), function (req, res) {
     movie.update(req, name, res)
   });
-  // app.post('/api/filpubcat', verify, publication.findAllFilCat)
-  // app.post('/api/filpubautor', verify, publication.findAllFilAutor)
-  // app.post('/api/perfil', verify, function (req, res) {
-  //   publication.findAllUser(req, res)
-  // })
+  app.post('/api/filtrar', movie.findAllFiltrar)
   app.delete('/api/eliminar/:id/:img', function (req, res) {
     const fs = require("fs")
     let pathViejo = 'netcli/src/peliculas' + req.params.img
@@ -58,12 +44,8 @@ module.exports = function(app) {
   })
 
   // Categorys
-  // app.get('/api/category', category.findAll);
-  // app.post('/api/dupcategory', category.findOrCreate)
+  app.get('/api/generos', genero.findAll);
   
-  // Favs
-  // app.post('/api/favoritos', verify, favs.findAll);
-  // app.post('/api/favorito', verify, function (req, res) {
-  //   favs.create(req, res)
-  // })
+  // Review
+  app.post('/api/aggreview', review.create);
 }

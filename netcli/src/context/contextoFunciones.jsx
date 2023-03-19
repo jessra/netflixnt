@@ -6,6 +6,7 @@ export function Contexto_DataProvider(props) {
   const [activo, setActivo] = useState({user: {img: '', name: ''}});
   const [peli, setPeli] = useState([]);
   const [peliSelect, setPeliSelect] = useState([])
+  const [generos, setGeneros] = useState([])
   // function Alert(men, tipo) {
   //   if (tipo) {
   //     document.getElementById('notificacion').classList.add('color-success');
@@ -32,6 +33,7 @@ export function Contexto_DataProvider(props) {
   useEffect((e) => {
     listaActivo()
     listaPeliculas()
+    listaGeneros()
   }, [])
 
   function listaActivo () {
@@ -39,6 +41,20 @@ export function Contexto_DataProvider(props) {
       const dataT = JSON.parse(localStorage.getItem('netflixnt'))
       setActivo(dataT)
     } 
+  }
+
+  function listaGeneros () {
+    let dataGen = []
+    http
+    .get('/generos')
+    .then(response => {
+      dataGen = response.data
+      setGeneros(dataGen)
+    })
+    .catch(e => {
+      console.log(e)
+    })
+    setGeneros(dataGen)
   }
 
   function listaPeliculas () {
@@ -86,7 +102,7 @@ export function Contexto_DataProvider(props) {
         actors: actor
       })
     })
-    setPeli(mov)
+    setPeli(mov.reverse())
   }
 
   function iniciarCuenta(user, pass) {
@@ -199,6 +215,51 @@ export function Contexto_DataProvider(props) {
     })
   }
 
+  function crearReview(user, mov, review, valor) {
+    if (review && valor) {
+      http
+      .post("/aggreview", {user: user, mov: mov, review: review, valor: valor})
+      .then((response) => {
+        console.log(response.data)
+        peliculaSelect(mov)
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+        // Alert('Ha sucedido un problema', false)
+      });
+    }
+  }
+
+  function eliminarPeli(mov, img) {
+    http
+    .delete(`/eliminar/${mov}/${img}`)
+    .then((response) => {
+      console.log(response.data)
+      listaPeliculas()
+      window.location.href = '/';
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+      // Alert('Ha sucedido un problema', false)
+    });
+  }
+
+  function filtrar(gen, name) {
+    console.log('eee')
+    if (!gen && !name) {
+      listaPeliculas()
+    } else {
+      http
+      .post(`/filtrar`, {gen: gen, name: name})
+      .then(response => {
+        ordenarDatosPeli(response.data)
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    }
+  }
+  
   function cerrarSesion() {
     localStorage.removeItem("netflixnt");
     window.location.href = '/Log';
@@ -213,7 +274,11 @@ export function Contexto_DataProvider(props) {
     activo,
     cerrarSesion,
     peliculaSelect,
-    peliSelect
+    peliSelect,
+    crearReview,
+    eliminarPeli,
+    generos,
+    filtrar
     }}>
     {props.children}
   </Contexto_Funciones.Provider>;
