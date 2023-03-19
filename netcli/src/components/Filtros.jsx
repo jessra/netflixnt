@@ -1,18 +1,38 @@
-import { useContext, useState } from "react";
-import { Contexto_Funciones } from "../context/contextoFunciones";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { generoList } from "../features/movies/generosSlice";
+import { ordenarDatosPeli, moviesList } from "../features/movies/moviesSlice";
+import http from "../http-common"
 
 export default function Filtros() {
-	const { generos, filtrar } = useContext(Contexto_Funciones);
+	const dispatch = useDispatch()
 	const [name, setName] = useState('')
 	const [gen, setGen] = useState('')
+	useEffect(() => {
+		dispatch(generoList())
+	}, [])
+	const generos = useSelector(state => state.genero)
 	const filtroGen = (e) => {
 		setGen(e.target.value)
 		filtrar(e.target.value, name)
 	}
 	const filtroName = (e) => {
-		console.log('eee');
 		setName(e.target.value)
 		filtrar(gen, e.target.value)
+	}
+	function filtrar(gen, name) {
+		if (!gen && !name) {
+			dispatch(moviesList())
+		} else {
+			http
+			.post(`/filtrar`, {gen: gen, name: name})
+			.then(response => {
+				dispatch(ordenarDatosPeli(response.data))
+			})
+			.catch(e => {
+				console.log(e)
+			})
+		}
 	}
 	return (
 		<>
@@ -59,7 +79,7 @@ export default function Filtros() {
 							hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
 						"
 					>
-						{generos.map((gen) => (
+						{generos.gen.map((gen) => (
 							<option key={gen.idGe} value={gen.idGe}>{gen.nameGe}</option>
 							))}
 							<option key='vacio' value="">Desmarcar</option>

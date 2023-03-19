@@ -1,10 +1,16 @@
 import Filtros from '../components/Filtros';
-import { useContext } from 'react';
-import { Contexto_Funciones } from '../context/contextoFunciones';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-export default function Example() {
-	const { peli } = useContext(Contexto_Funciones);
-	if (peli) {
+import { useDispatch, useSelector } from "react-redux";
+import { moviesList } from "../features/movies/moviesSlice";
+
+export default function Inicio() {
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(moviesList())
+	}, [])
+	const movies = useSelector(state => state.movies)
+	if (movies.movs) {
 		return (
 			<div>
 				<Filtros />
@@ -12,7 +18,7 @@ export default function Example() {
 					<h3 className="text-2xl font-bold tracking-tight dark:text-white">Películas</h3>
 
 					<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-						{peli.map((pelicula) => (
+						{movies.movs.map((pelicula) => (
 							<div
 								key={pelicula.id}
 								className="group relative p-3 rounded-lg bg-stone-light dark:bg-black-medium"
@@ -41,6 +47,6 @@ export default function Example() {
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
 }

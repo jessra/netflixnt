@@ -1,9 +1,12 @@
-import { Fragment, useState, useContext } from "react";
-import { Contexto_Funciones } from "../context/contextoFunciones";
+import { Fragment, useState } from "react";
 import { Disclosure, Dialog, Transition, Menu } from "@headlessui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesList } from "../features/movies/moviesSlice";
+import http from "../http-common"
 
 export default function Crear({isOpenModal, Modal}) {
-	const { registrarPelicula } = useContext(Contexto_Funciones);
+	const dispatch = useDispatch()
+	const activo = useSelector(state => state.activo)
 	const [head, setHead] = useState('');
 	const [di, setDi] = useState('');
 	const [fran, setFran] = useState('');
@@ -18,6 +21,34 @@ export default function Crear({isOpenModal, Modal}) {
       data: e.target.files[0],
     }
     setImg(img2)
+  }
+  function registrarPelicula(head, di, fran, gen, fecMov, sip, img, tra) {
+    if (head && di && fran && gen && fecMov && sip && img.data && tra) {
+			let formData = new FormData();
+			formData.append("file", img.data);
+			formData.append("head", head);
+			formData.append("director", di);
+			formData.append("franquicia", fran);
+			formData.append("genero", gen);
+			formData.append("fecMov", fecMov);
+			formData.append("sipnosis", sip);
+			formData.append("link", tra);
+			let header = {
+				headers: {
+          authorization: `Bearer ${activo.token}`,
+					'Content-Type': 'multipart/form-data',
+				},
+			};
+			http
+			.post("http://localhost:8081/api/aggmovies", formData, header)
+			.then((response) => {
+        dispatch(moviesList())
+			})
+			.catch((error) => {
+				console.log('Error:', error);
+				// Alert('Ha sucedido un problema', false)
+			});
+    }
   }
 	return (
 		<>

@@ -193,13 +193,10 @@ exports.findAllFiltrar = async (req, res) => {
 	try {
 		let mov = []
 		if (req.body.gen && req.body.name) {
-			console.log('1')
 			mov = await Movie.findAll({where: {genero: req.body.gen, head: {[Op.like]: `${req.body.name}%`}}})
 		} else if (req.body.gen && !req.body.name) {
-			console.log('2')
 			mov = await Movie.findAll({where: {genero: req.body.gen}})
 		} else if (!req.body.gen && req.body.name) {
-			console.log('3')
 			mov = await Movie.findAll({where: {head: {[Op.like]: `${req.body.name}%`}}})
 		}
 		const act = await Actors.findAll()
