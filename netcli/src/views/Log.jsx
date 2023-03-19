@@ -104,7 +104,7 @@ export default function Log() {
 										className="w-full rounded-md
                       py-2 px-3 text-sm font-semibold
                       border-4 border-transparent hover:border-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 									>
 										Iniciar sesión
 									</button>
@@ -116,7 +116,7 @@ export default function Log() {
                       group flex w-full justify-center rounded-md
                       py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 										onClick={reg}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -188,7 +188,7 @@ export default function Log() {
 										className="w-full rounded-md
                       py-2 px-3 text-sm font-semibold
                       border-4 border-transparent hover:border-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 									>
 										Registrarse
 									</button>
@@ -200,7 +200,7 @@ export default function Log() {
                       group flex w-full justify-center rounded-md
                       py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 										onClick={log}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">

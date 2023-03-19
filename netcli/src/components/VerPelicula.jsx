@@ -172,7 +172,12 @@ export default function VerPelicula() {
 												/>
 												<textarea
 													required
-													className="resize-none block h-10 w-full rounded-t-md border-0 py-1.5 px-3 ring-1 ring-inset ring-muted-neutral focus:z-10 focus-visible:ring-0 focus:ring-primario sm:text-sm sm:leading-6"
+													className="
+														resize-none block h-10 w-full rounded-t-md
+														py-1.5 px-3 border-0 focus-visible:outline-0 sm:text-md sm:leading-6
+														bg-white-bone dark:bg-black-medium dark:text-white
+														focus-visible
+													"
 													name="newComentario"
 													id="newComentario"
 													cols="30"
@@ -190,6 +195,7 @@ export default function VerPelicula() {
 													crearReview(activo.user.idUser, peliSelect.id, review, valor);
 													limpiarCampos();
 												}}
+												className="self-end rounded-md py-2 px-3 text-sm font-semibold text-white bg-primario-light hover:bg-primario focus-visible:outline"
 											>
 												{' '}
 												Enviar{' '}
@@ -198,7 +204,7 @@ export default function VerPelicula() {
 									</li>
 								</ul>
 							</div>
-							<div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+							<div className="flex h-full flex-col bg-white dark:bg-black-medium shadow-xl">
 								<div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
 									<div className="flow-root">
 										<ul role="list" className="divide-y divide-muted-neutral">
