@@ -1,9 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
-import { Contexto_Funciones } from "../context/contextoFunciones";
+import http from "../http-common"
 
 export default function Log() {
-	const { iniciarCuenta, registrarCuenta } = useContext(Contexto_Funciones);
 	const [registro, setRegistro] = useState(true);
 	const [userLog, setUserLog] = useState("");
 	const [passLog, setPassLog] = useState("");
@@ -217,5 +216,59 @@ export default function Log() {
 					</div>
 				</>
 			);
+	}
+}
+
+function iniciarCuenta(user, pass) {
+	if (user && pass) {
+		http
+		.post('/inituser', {user: user, pass: pass})
+		.then(response => {
+			if (response.data.err) {
+				console.log(response.data.err)
+				if (response.data.err.errors[0].message) {
+					// Alert('Ha sucedido un problema. ' + response.data.err.errors[0].message, false)
+				} else {
+					// Alert('Ha sucedido un problema', false)
+				}
+			} else {
+				localStorage.setItem('netflixnt', JSON.stringify(response.data));
+				window.location.href = '/';
+			}
+		})
+	}
+}
+
+function registrarCuenta(user, pass, img) {
+	if (user && pass && img.data) {
+		let formData = new FormData();
+		formData.append("file", img.data);
+		formData.append("name", user);
+		formData.append("pass", pass);
+		let header = {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
+		};
+		http
+		.post("http://localhost:8081/api/aggusers", formData, header)
+		.then((response) => {
+			if (response.data.err) {
+				if (response.data.err.errors[0].message) {
+					// Alert('Ha sucedido un problema. ' + response.data.err.errors[0].message, false)
+				} else {
+					// Alert('Ha sucedido un problema', false)
+				}
+			} else {
+				localStorage.setItem('netflixnt', JSON.stringify(response.data));
+				window.location.href = '/';
+			}
+		})
+		.catch((error) => {
+			console.log('Error:', error);
+			// Alert('Ha sucedido un problema', false)
+		});
+	} else {
+		// Alert('Por favor rellena todos los campos', false)
 	}
 }

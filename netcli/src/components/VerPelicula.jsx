@@ -1,21 +1,27 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Disclosure } from '@headlessui/react';
-import { ChevronUpIcon } from '@heroicons/react/20/solid';
-import { useEffect, useContext, useState } from 'react';
-import { Contexto_Funciones } from '../context/contextoFunciones';
+import { Link, useLocation } from "react-router-dom";
+import { Disclosure } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/20/solid";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { moviesList } from "../features/movies/moviesSlice";
+import { movieList } from "../features/movies/movieSlice";
+import http from "../http-common"
 
 export default function VerPelicula() {
-	const { peliSelect, peliculaSelect, activo, crearReview, eliminarPeli } =
-		useContext(Contexto_Funciones);
-	const [review, setReview] = useState('');
-	const [valor, setValor] = useState(1);
+	const dispatch = useDispatch()
+	const activo = useSelector(state => state.activo)
+	const peliSelect = useSelector(state => state.movie)
+  const [review, setReview] = useState('')
+  const [valor, setValor] = useState(1)
 	function textareaHeight(textarea) {
 		if (textarea) {
 			textarea.style.height = `${textarea.scrollHeight}px`;
 		}
 	}
 	function formatearFecha(fec) {
-		return fec.split('T')[0];
+		if (fec) {
+			return fec.split('T')[0];
+		}
 	}
 	function limpiarCampos() {
 		if (review) {
@@ -23,19 +29,49 @@ export default function VerPelicula() {
 			setValor(1);
 		}
 	}
-	const location = useLocation();
-	const route = location.pathname.split('/')[2];
+	function eliminarPeli(mov, img) {
+		http
+		.delete(`/eliminar/${mov}/${img}`)
+		.then((response) => {
+			console.log(response.data)
+			dispatch(moviesList())
+			window.location.href = '/';
+		})
+		.catch((error) => {
+			console.log('Error:', error);
+			// Alert('Ha sucedido un problema', false)
+		});
+	}
+  function crearReview(user, mov, review, valor) {
+    if (review && valor) {
+      http
+      .post("/aggreview", {user: user, mov: mov, review: review, valor: valor})
+      .then((response) => {
+				if (response.data.r) {
+					console.log(response.data)
+					dispatch(movieList(mov))
+				} else {
+					console.log('Error:', response.data.msg);
+				}
+      })
+      .catch((error) => {
+        // Alert('Ha sucedido un problema', false)
+      });
+    }
+  }
+	const location = useLocation()
+	const route = location.pathname.split("/")[2];
 	if (route) {
 		useEffect((e) => {
-			peliculaSelect(route);
+			dispatch(movieList(route))
 		}, []);
-		if (peliSelect.id) {
+		if (peliSelect.mov.id) {
 			return (
 				<>
 					<div className="mt-5">
 						<iframe
 							className="w-full h-[20rem] sm:h-[30rem] lg:h-[40rem]"
-							src={peliSelect.link}
+							src={peliSelect.mov.link}
 							title="YouTube video player"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 							allowFullScreen
@@ -48,13 +84,13 @@ export default function VerPelicula() {
 											<Disclosure.Button className="flex w-full justify-between items-center rounded-lg px-4 py-2 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primario focus-visible:ring-opacity-75">
 												<button
 													type="button"
-													onClick={(e) => eliminarPeli(peliSelect.id, peliculaSelect.img)}
+													onClick={(e) => eliminarPeli(peliSelect.mov.id, peliSelect.mov.img)}
 												>
 													Eliminar
 												</button>
 												<div>
 													<p className="text-4xl text-bold dark:text-white">
-														{peliSelect.head}
+														{peliSelect.mov.head}
 													</p>
 													<p className="text-sm dark:text-stone">Ver detalles</p>
 												</div>
@@ -72,7 +108,7 @@ export default function VerPelicula() {
 																Titulo
 															</dt>
 															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.head}
+																{peliSelect.mov.head}
 															</dd>
 														</div>
 														<div className="bg-white dark:bg-black-medium dark:text-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -80,7 +116,7 @@ export default function VerPelicula() {
 																Director
 															</dt>
 															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.director}
+															{peliSelect.mov.director}
 															</dd>
 														</div>
 														<div className="bg-white-bone dark:bg-black-soft dark:text-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -88,7 +124,7 @@ export default function VerPelicula() {
 																Sipnosis
 															</dt>
 															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.sipnosis}
+																{peliSelect.mov.sipnosis}
 															</dd>
 														</div>
 														<div className="bg-white dark:bg-black-medium dark:text-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -96,7 +132,7 @@ export default function VerPelicula() {
 																Franquicia
 															</dt>
 															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.franquicia}
+																{peliSelect.mov.franquicia}
 															</dd>
 														</div>
 														<div className="bg-white-bone dark:bg-black-soft dark:text-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -104,23 +140,21 @@ export default function VerPelicula() {
 																Genero
 															</dt>
 															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.genero}
+																{peliSelect.mov.genero}
 															</dd>
 														</div>
 														<div className="bg-white dark:bg-black-medium dark:text-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 															<dt className="text-sm font-bold text-stone-dark dark:text-stone">
 																Fecha de publicación
 															</dt>
-															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.fecMov}
-															</dd>
+															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">{peliSelect.mov.fecMov}</dd>
 														</div>
 														<div className="bg-white-bone dark:bg-black-soft dark:text-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
 															<dt className="text-sm font-bold text-stone-dark dark:text-stone">
 																Actores
 															</dt>
 															<dd className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																{peliSelect.actors}
+																{/* {peliSelect.mov.actors} */}
 															</dd>
 														</div>
 													</dl>
@@ -131,11 +165,8 @@ export default function VerPelicula() {
 								</Disclosure>
 								<p className="mt-4 dark:text-stone">Comentarios</p>
 								<ul>
-									{peliSelect.reviews.map((comentario) => (
-										<li
-											key={comentario.id}
-											className="my-6 divide-y divide-muted-neutral"
-										>
+									{peliSelect.mov.reviews.map((comentario) => (
+										<li key={comentario.id} className="my-6 divide-y divide-muted-neutral">
 											<div className="flex gap-x-6">
 												<img
 													className="h-16 w-16 rounded-full"
@@ -192,8 +223,8 @@ export default function VerPelicula() {
 											</div>
 											<button
 												onClick={(e) => {
-													crearReview(activo.user.idUser, peliSelect.id, review, valor);
-													limpiarCampos();
+													crearReview(activo.user.idUser, peliSelect.mov.id, review, valor);
+													limpiarCampos()
 												}}
 												className="self-end rounded-md py-2 px-3 text-sm font-semibold text-white bg-primario-light hover:bg-primario focus-visible:outline"
 											>
@@ -208,7 +239,7 @@ export default function VerPelicula() {
 								<div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
 									<div className="flow-root">
 										<ul role="list" className="divide-y divide-muted-neutral">
-											{peliSelect.recomendacion.map((pelicula) => (
+											{peliSelect.mov.recomendacion.map((pelicula) => (
 												<li
 													key={pelicula.idMov}
 													className="flex flex-col md:flex-row lg:flex-col xl:flex-row md:items-center xl:items-start py-6"
@@ -224,8 +255,9 @@ export default function VerPelicula() {
 														<div>
 															<div className="flex justify-between text-base font-medium ">
 																<p className="font-bold dark:text-white">
-																	<Link to={`/Movie/` + pelicula.idMov}></Link>
+																	<Link to={`/Movie/` + pelicula.idMov}>
 																	{pelicula.head}
+																	</Link>
 																</p>
 																<p className="ml-4 dark:text-muted">
 																	{formatearFecha(pelicula.fecMov)}

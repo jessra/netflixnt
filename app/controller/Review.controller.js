@@ -6,52 +6,12 @@ const Publication = db.Publication;
     try {
       await Review.create({
         idUserRev: req.body.user,
-        idPeliRev: req.body.peli,
+        idMovRev: req.body.mov,
         review: req.body.review,
         valorRev: req.body.valor
       })
+      res.send({msg: 'Agregado', r: true})
     } catch (error) {
-      
+      res.send({msg:'Ocurrió un error. ' + error, r:false})
     }
   }
-// exports.create = async (req, res) => {	
-//   const [favo, creado] = await Fav.findOrCreate({
-// 		where: {
-//       idUserFav: req.body.user,
-//       idPubliFav: req.body.pub
-// 		},
-// 		default: {
-//       idUserFav: req.body.user,
-//       idPubliFav: req.body.pub
-// 		}
-// 	})
-//   if (!creado) {
-//     Fav.destroy({
-//       where: {
-//         idFav: favo.idFav
-//       }
-//     }).then(fav => {
-//       res.send({msg: 'Se ha eliminado de favoritos'})
-//     }).catch(err => {
-//       res.status(500).send("Error -> " + err);
-//     })
-//   } else {
-//     res.send({msg: 'Se ha agregado a favoritos'})
-//   }
-// };
-
-// exports.findAll = (req, res) => {
-// 	Fav.findAll({where: {idUserFav: req.userid}}).then(fav => {
-//     let data = []
-//     fav.forEach(f => {
-//       data.push(f.dataValues.idPubliFav)
-//     });
-//     Publication.findAll({where: {idPub: data}}).then(pub => {
-//       res.send(pub)
-//     }).catch(err => {
-//       res.status(500).send("Error -> " + err);
-//     })
-// 	}).catch(err => {
-// 		res.status(500).send("Error -> " + err);
-// 	})
-// };

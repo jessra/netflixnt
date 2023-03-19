@@ -1,19 +1,30 @@
-import { Disclosure, Transition, Menu } from '@headlessui/react';
-import { Fragment, useState, useContext } from 'react';
+import { Disclosure, Dialog, Transition, Menu } from '@headlessui/react';
+import { Fragment, useState, useEffect } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Outlet, Link } from 'react-router-dom';
-import { Contexto_Funciones } from '../context/contextoFunciones';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import SwitchDarkMode from './SwitchDarkMode';
-import Crear from '../views/Crear';
+import Crear from "../views/Crear"
+import { useDispatch, useSelector } from "react-redux";
+import { activoList } from "../features/movies/activoSlice";
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
 }
+
 export default function Navbar() {
-	const { activo, cerrarSesion } = useContext(Contexto_Funciones);
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(activoList())
+	}, [])
+	const activo = useSelector(state => state.activo)
 	const [isOpenModal, setisOpenModal] = useState(false);
 	function Modal() {
 		setisOpenModal(!isOpenModal);
+	}
+	function cerrarSesion() {
+		localStorage.removeItem("netflixnt");
+		dispatch(activoList())
+		window.location.href = '/Log';
 	}
 	return (
 		<>
