@@ -101,10 +101,10 @@ export default function Log() {
 									</p>
 									<button
 										onClick={() => setRegistro(false)}
-										className="group flex w-full justify-center rounded-md
+										className="w-full rounded-md
                       py-2 px-3 text-sm font-semibold
                       border-4 border-transparent hover:border-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 									>
 										Iniciar sesión
 									</button>
@@ -116,7 +116,7 @@ export default function Log() {
                       group flex w-full justify-center rounded-md
                       py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 										onClick={reg}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -156,7 +156,7 @@ export default function Log() {
 											name="usuario"
 											type="usuario"
 											required
-											className="block w-full rounded-t-md border-0 py-1.5   ring-1 ring-inset ring-gray-300 placeholder:  focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+											className="block w-full rounded-t-md border-0 px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:  focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											placeholder="Usuario"
 											onChange={(e) => setUserLog(e.target.value)}
 										/>
@@ -171,7 +171,7 @@ export default function Log() {
 											type="password"
 											autoComplete="current-password"
 											required
-											className="block w-full rounded-b-md border-0 py-1.5   ring-1 ring-inset ring-gray-300 placeholder:  focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+											className="block w-full rounded-b-md border-0 px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:  focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 											placeholder="Contraseña"
 											onChange={(e) => setPassLog(e.target.value)}
 										/>
@@ -185,10 +185,10 @@ export default function Log() {
 									</p>
 									<button
 										onClick={() => setRegistro(true)}
-										className="group flex w-full justify-center rounded-md
+										className="w-full rounded-md
                       py-2 px-3 text-sm font-semibold
                       border-4 border-transparent hover:border-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 									>
 										Registrarse
 									</button>
@@ -200,12 +200,12 @@ export default function Log() {
                       group flex w-full justify-center rounded-md
                       py-2 px-3 text-sm font-semibold text-white
                       bg-primario-light hover:bg-primario
-                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      focus-visible:outline"
 										onClick={log}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">
 											<LockClosedIcon
-												className="h-5 w-5 group-hover: "
+												className="h-5 w-5 text-white"
 												aria-hidden="true"
 											/>
 										</span>

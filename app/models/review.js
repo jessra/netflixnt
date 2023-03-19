@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
 		type: Sequelize.SMALLINT,
 		allowNull: false
 	  },
-	  idMovRev: {
+	  idPubliRev: {
 		type: Sequelize.SMALLINT,
 		allowNull: false
 	  },

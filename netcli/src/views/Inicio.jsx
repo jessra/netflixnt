@@ -11,11 +11,11 @@ export default function Example() {
 				<div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 					<h3 className="text-2xl font-bold tracking-tight dark:text-white">Películas</h3>
 
-					<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+					<div className="mt-6 grid grid-cols-1 items-start gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 						{peli.map((pelicula) => (
 							<div
 								key={pelicula.id}
-								className="group relative p-3 rounded-lg bg-stone-light dark:bg-black-medium"
+								className="group relative p-3 rounded-lg bg-white-bone dark:bg-black-medium"
 							>
 								<div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
 									<img
@@ -31,8 +31,6 @@ export default function Example() {
 												<span aria-hidden="true" className="absolute inset-0" />
 												{pelicula.head}
 											</Link>
-											{/* <a href={`/Movie/` + pelicula.id}>
-                        </a> */}
 										</p>
 										<p className="mt-1 text-sm dark:text-muted">{pelicula.sipnosis}</p>
 									</div>
