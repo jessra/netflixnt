@@ -46,18 +46,20 @@ export default function VerPelicula() {
 									{({ open }) => (
 										<>
 											<Disclosure.Button className="flex w-full justify-between items-center rounded-lg px-4 py-2 text-left text-sm font-medium focus:outline-none focus-visible:ring focus-visible:ring-primario focus-visible:ring-opacity-75">
-												<button
-													type="button"
-													onClick={(e) => eliminarPeli(peliSelect.id, peliculaSelect.img)}
-												>
-													Eliminar
-												</button>
-												<div>
+												<div className='flex-auto text-center'>
 													<p className="text-4xl text-bold dark:text-white">
 														{peliSelect.head}
 													</p>
 													<p className="text-sm dark:text-stone">Ver detalles</p>
 												</div>
+												<button
+													type="button"
+													onClick={(e) => eliminarPeli(peliSelect.id, peliculaSelect.img)}
+													className="rounded-md dark:text-white py-2 px-3 text-sm font-semibold
+													border-4 border-transparent hover:border-primario focus-visible:outline"
+												>
+													Eliminar
+												</button>
 												<ChevronUpIcon
 													className={`${
 														open ? '' : 'rotate-180 transform'
@@ -159,17 +161,17 @@ export default function VerPelicula() {
 												alt=""
 											/>
 											<div className="w-full">
-												<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark">
+												<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark dark:text-white-bone">
 													{activo.user.name}
 												</p>
-												<input
+												{/* <input
 													type="number"
 													min="1"
 													max="5"
 													name=""
 													value={valor}
 													onChange={(e) => setValor(e.target.value)}
-												/>
+												/> */}
 												<textarea
 													required
 													className="
