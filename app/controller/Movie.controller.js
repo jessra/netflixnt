@@ -189,61 +189,30 @@ exports.findOneMov = async (req, res) => {
 		res.send('Ocurrió un error. ' + error)		
 	}
 };
-// exports.findAllFilCat = (req, res) => {
-// 	Category.findAll({attributes: ['idCat'], where: {nameCat: {[Op.like]: `${req.body.cat}%`}}}).then(cat => {
-//     let dataC = []
-//     cat.forEach(c => {
-//       dataC.push(c.dataValues.idCat)
-//     });
-// 		if (req.body.autor) {
-// 			Users.findAll({attributes: ['idUser'], where: {name: {[Op.like]: `${req.body.autor}%`}}}).then(user => {
-// 				let dataU = []
-// 				cat.forEach(c => {
-// 					dataU.push(c.dataValues.idCat)
-// 				});
-// 				Publication.findAll({where: {category: dataC, autor: dataU}}).then(pub => {
-// 					res.send(pub)
-// 				}).catch(err => {
-// 					res.status(500).send("Error -> " + err);
-// 				})
-// 			}).catch(err => {
-// 		res.status(500).send("Error -> " + err);
-// 	})
-// 		} else {
-// 			Publication.findAll({where: {category: dataC}}).then(pub => {
-// 				res.send(pub)
-// 			}).catch(err => {
-// 				res.status(500).send("Error -> " + err);
-// 			})
-// 		}
-// 	}).catch(err => {
-// 		res.status(500).send("Error -> " + err);
-// 	})
-// };
+exports.findAllFiltrar = async (req, res) => {
+	try {
+		let mov = []
+		if (req.body.gen && req.body.name) {
+			console.log('1')
+			mov = await Movie.findAll({where: {genero: req.body.gen, head: {[Op.like]: `${req.body.name}%`}}})
+		} else if (req.body.gen && !req.body.name) {
+			console.log('2')
+			mov = await Movie.findAll({where: {genero: req.body.gen}})
+		} else if (!req.body.gen && req.body.name) {
+			console.log('3')
+			mov = await Movie.findAll({where: {head: {[Op.like]: `${req.body.name}%`}}})
+		}
+		const act = await Actors.findAll()
+		const dir = await Director.findAll()
+		const fran = await Franquicia.findAll()
+		const gen = await Genero.findAll()
+		const mov_act = await MovieActors.findAll()
+		res.send({mov: mov,act:act,dir: dir,fran: fran,gen: gen,mov_act: mov_act})
+	} catch (error) {
+		res.send('Ocurrió un error. ' + error)	
+	}
+};
 
-// exports.findAllFilAutor = (req, res) => {
-// 	Users.findAll({attributes: ['idUser'], where: {name: {[Op.like]: `${req.body.autor}%`}}}).then(user => {
-//     let data = []
-//     user.forEach(c => {
-//       data.push(c.dataValues.idUser)
-//     });
-// 		Publication.findAll({where: {autor: data}}).then(pub => {
-// 			res.send(pub)
-// 		}).catch(err => {
-// 			res.status(500).send("Error -> " + err);
-// 		})
-// 	}).catch(err => {
-// 		res.status(500).send("Error -> " + err);
-// 	})
-// };
-
-// exports.findAllUser = (req, res) => {
-// 	Publication.findAll({where: {autor: req.userid}}).then(pub => {
-// 		res.send(pub);
-// 	}).catch(err => {
-// 		res.status(500).send("Error -> " + err);
-// 	})
-// };
 exports.destroy = (req, res) => {
 	Movie.destroy({where: {idMov: req.params.id}}).then(mov => {
 		res.send({msg: 'Eliminado'});
