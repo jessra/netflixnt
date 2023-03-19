@@ -58,7 +58,7 @@ export default function Crear({isOpenModal, Modal}) {
 					setImg({ preview: '', data: '' })
 					aggActor([{id: 1, nombre: '',},])
 					aggnextId(2)
-					Modal
+					Modal()
 				} else {
 					console.log(response.data.msg);
 				}
@@ -166,6 +166,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="titulo"
 												id="titulo"
 												autoComplete="given-name"
+												value={head}
 												onChange={(e) => setHead(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
@@ -187,6 +188,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="director"
 												id="director"
 												autoComplete="given-name"
+												value={di}
 												onChange={(e) => setDi(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
@@ -208,6 +210,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="franquicia"
 												id="franquicia"
 												autoComplete="given-name"
+												value={fran}
 												onChange={(e) => setFran(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
@@ -229,6 +232,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="trailer"
 												id="trailer"
 												autoComplete="given-name"
+												value={tra}
 												onChange={(e) => setTra(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
@@ -250,6 +254,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="last-name"
 												id="last-name"
 												autoComplete="family-name"
+												value={sip}
 												onChange={(e) => setSip(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
@@ -271,6 +276,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="genero"
 												id="genero"
 												autoComplete="given-name"
+												value={gen}
 												onChange={(e) => setGen(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
@@ -292,6 +298,7 @@ export default function Crear({isOpenModal, Modal}) {
 												name="fecha"
 												id="fechaLanzamiento"
 												autoComplete="given-name"
+												value={fecMov}
 												onChange={(e) => setFecMov(e.target.value)}
 												className="
 													block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
