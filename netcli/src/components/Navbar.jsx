@@ -17,10 +17,6 @@ export default function Navbar() {
 		dispatch(activoList())
 	}, [])
 	const activo = useSelector(state => state.activo)
-	// setTimeout(() => {
-	// 	console.log(activo);
-	// 	if (!activo.user.name) window.location.href = '/Log';
-	// }, 9000);
 	const [isOpenModal, setisOpenModal] = useState(false);
 	function Modal() {
 		setisOpenModal(!isOpenModal);
