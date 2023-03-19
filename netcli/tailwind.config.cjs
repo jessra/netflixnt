@@ -10,7 +10,10 @@ module.exports = {
 				medium: '#181818',
 				obscure: '#080808',
 			},
-			white: '#fff',
+			white: {
+				DEFAULT: '#fff',
+				bone: '#e7e5e4'
+			},
 			muted: {
 				DEFAULT: '#a8a29e',
 				neutral: '#a1a1aa',
@@ -22,9 +25,10 @@ module.exports = {
 			},
 			stone: {
 				DEFAULT: '#a8a29e',
-				light: '#e7e5e4',
 				dark: '#292524',
 			},
+			danger: '#dc2626',
+			success: '#16a34a'
 		},
 		fontFamily: {
 			manrope: ['Manrope'],

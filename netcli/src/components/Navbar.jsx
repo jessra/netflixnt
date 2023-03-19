@@ -1,10 +1,10 @@
-import { Disclosure, Dialog, Transition, Menu } from '@headlessui/react';
+import { Disclosure, Transition, Menu } from '@headlessui/react';
 import { Fragment, useState, useContext } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Contexto_Funciones } from "../context/contextoFunciones";
+import { Outlet, Link } from 'react-router-dom';
+import { Contexto_Funciones } from '../context/contextoFunciones';
 import SwitchDarkMode from './SwitchDarkMode';
-import Crear from "../views/Crear"
+import Crear from '../views/Crear';
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
@@ -27,7 +27,7 @@ export default function Navbar() {
 							<div className="relative flex h-16 items-center justify-between">
 								<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 									{/* Mobile menu button*/}
-									<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2   hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+									<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 dark:text-white-bone focus-visible:outline-0">
 										{open ? (
 											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
 										) : (
@@ -48,7 +48,7 @@ export default function Navbar() {
 											alt="netflixn´t"
 										/>
 									</div>
-									<div className="hidden sm:ml-6 sm:block">
+									<div className="hidden sm:ml-6 sm:block dark:bg-dark-medium">
 										<div className="flex space-x-4">
 											<Link
 												to="/"
@@ -76,12 +76,13 @@ export default function Navbar() {
 										</div>
 									</div>
 								</div>
-								<div className="py-16">
+								<div className="lg:py-16">
 									<SwitchDarkMode />
 								</div>
 								<Menu as="div" className="ml-3">
 									<div>
-										<Menu.Button className="
+										<Menu.Button
+											className="
 												flex max-w-xs items-center rounded-full text-sm focus:outline-none
 												focus:ring-2 focus:ring-primario focus:ring-offset-2 focus:ring-offset-muted
 											"
@@ -122,14 +123,14 @@ export default function Navbar() {
 							</div>
 						</div>
 
-						<Disclosure.Panel className="sm:hidden bg-muted">
+						<Disclosure.Panel className="sm:hidden bg-muted dark:bg-black-medium">
 							<div className="space-y-1 px-2 pt-2 pb-3">
 								<Link
 									to="/"
 									className={classNames(
 										location.pathname == '/' && !isOpenModal
 											? 'bg-primario text-white'
-											: '  hover:bg-gray-700 hover:text-primario',
+											: '',
 										'rounded-md px-3 py-2 text-sm font-bold tracking-widest block'
 									)}
 								>
@@ -147,8 +148,8 @@ export default function Navbar() {
 									className={classNames(
 										isOpenModal
 											? 'bg-primario text-white'
-											: '  hover:bg-gray-700 hover:text-primario',
-										'w-full rounded-md px-3 py-2 text-left text-sm font-bold tracking-widest focus:outline-none'
+											: ' ',
+										'w-full dark:text-white rounded-md px-3 py-2 text-left text-sm font-bold tracking-widest focus:outline-none'
 									)}
 								>
 									Crear

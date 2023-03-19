@@ -15,7 +15,7 @@ export default function Example() {
 						{peli.map((pelicula) => (
 							<div
 								key={pelicula.id}
-								className="group relative p-3 rounded-lg bg-stone-light dark:bg-black-medium"
+								className="group relative p-3 rounded-lg bg-white-bone dark:bg-black-medium"
 							>
 								<div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
 									<img

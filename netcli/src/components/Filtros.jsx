@@ -17,9 +17,9 @@ export default function Filtros() {
 						autoComplete="email"
 						className="
 							block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
-							focus-visible:outline-0 sm:text-md sm:leading-6 bg-stone-light dark:bg-black-medium dark:text-white ring-2 ring-transparent
-							focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
-							hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
+							focus-visible:outline-0 sm:text-md sm:leading-6 bg-white-bone dark:bg-black-medium dark:text-white ring-2 ring-transparent
+							dark:focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
+							dark:hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
 						"
 					/>
 				</div>
@@ -37,9 +37,9 @@ export default function Filtros() {
 						autoComplete="email"
 						className="
 							block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
-							focus-visible:outline-0 sm:text-md sm:leading-6 bg-stone-light dark:bg-black-medium dark:text-white ring-2 ring-transparent
-							focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
-							hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
+							focus-visible:outline-0 sm:text-md sm:leading-6 bg-white-bone dark:bg-black-medium dark:text-white ring-2 ring-transparent
+							dark:focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
+							dark:hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
 						"
 					/>
 				</div>
@@ -56,9 +56,9 @@ export default function Filtros() {
 						autoComplete="categoria-name"
 						className="
 							block w-full rounded-md py-1.5 px-3 focus:z-10 border-0
-							focus-visible:outline-0 sm:text-md sm:leading-6 bg-stone-light dark:bg-black-medium dark:text-white ring-2 ring-transparent
-							focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
-							hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
+							focus-visible:outline-0 sm:text-md sm:leading-6 bg-white-bone dark:bg-black-medium dark:text-white ring-2 ring-transparent
+							dark:focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
+							dark:hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario
 						"
 					>
 						<option>United States</option>
