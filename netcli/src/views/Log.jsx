@@ -1,30 +1,30 @@
-import { useState, useContext } from "react";
-import { LockClosedIcon } from "@heroicons/react/20/solid";
-import { Contexto_Funciones } from "../context/contextoFunciones";
+import { useState, useContext } from 'react';
+import { LockClosedIcon } from '@heroicons/react/20/solid';
+import { Contexto_Funciones } from '../context/contextoFunciones';
 
 export default function Log() {
 	const { iniciarCuenta, registrarCuenta } = useContext(Contexto_Funciones);
 	const [registro, setRegistro] = useState(true);
-	const [userLog, setUserLog] = useState("");
-	const [passLog, setPassLog] = useState("");
-	const [userReg, setUserReg] = useState("");
-	const [passReg, setPassReg] = useState("");
-	const [imgReg, setImgReg] = useState({preview: '', data: ''});
-  const cambioImg = (e) => {
-    const img2 = {
-      preview: URL.createObjectURL(e.target.files[0]),
-      data: e.target.files[0],
-    }
-    setImgReg(img2)
-  }
+	const [userLog, setUserLog] = useState('');
+	const [passLog, setPassLog] = useState('');
+	const [userReg, setUserReg] = useState('');
+	const [passReg, setPassReg] = useState('');
+	const [imgReg, setImgReg] = useState({ preview: '', data: '' });
+	const cambioImg = (e) => {
+		const img2 = {
+			preview: URL.createObjectURL(e.target.files[0]),
+			data: e.target.files[0],
+		};
+		setImgReg(img2);
+	};
 	const reg = (e) => {
-    e.preventDefault();
-		registrarCuenta(userReg, passReg, imgReg)
-	}
+		e.preventDefault();
+		registrarCuenta(userReg, passReg, imgReg);
+	};
 	const log = (e) => {
 		e.preventDefault();
-		iniciarCuenta(userLog, passLog)
-	}
+		iniciarCuenta(userLog, passLog);
+	};
 	switch (registro) {
 		case true:
 			return (
@@ -42,20 +42,39 @@ export default function Log() {
 								<div className="-space-y-px rounded-md shadow-sm">
 									<div>
 										<div className="my-3 mx-auto w-[15rem]">
-											<input type="file" name="photo" id="img" className="hidden" onChange={cambioImg} accept=".jpg, .jpeg, .png"/>
-											<div className="mt-2 flex items-center">
-												<img src={imgReg.preview} alt="" />
-												<span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-													<svg
-														className="h-full w-full  "
-														fill="currentColor"
-														viewBox="0 0 24 24"
-													>
-														<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-													</svg>
-												</span>
+											<input
+												type="file"
+												name="photo"
+												id="img"
+												className="hidden"
+												onChange={cambioImg}
+												accept=".jpg, .jpeg, .png"
+											/>
+											<div className={`${
+													imgReg.preview ? 'flex-col gap-y-2' : ''
+												} mt-2 flex items-center`
+											}>
+												{imgReg.preview ? (
+													<>
+														<div className='rounded-md overflow-hidden'>
+															<img src={imgReg.preview} alt="" />
+														</div>
+													</>
+												) : (
+													<>
+														<span className="inline-block h-12 w-12 overflow-hidden rounded-full bg-gray-100">
+															<svg
+																className="h-full w-full  "
+																fill="currentColor"
+																viewBox="0 0 24 24"
+															>
+																<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+															</svg>
+														</span>
+													</>
+												)}
 												<label
-													className="ml-5 rounded-md border border-gray-300 bg-white py-1.5 px-2.5 text-sm font-semibold   shadow-sm hover:bg-gray-50block text-sm font-medium leading-6"
+													className="ml-5 rounded-md border bg-white py-1.5 px-2.5 text-sm font-semibold shadow-sm hover:bg-gray-50block text-sm font-medium leading-6"
 													htmlFor="img"
 												>
 													Imagen de usuario
@@ -204,10 +223,7 @@ export default function Log() {
 										onClick={log}
 									>
 										<span className="absolute inset-y-0 left-0 flex items-center pl-3">
-											<LockClosedIcon
-												className="h-5 w-5 text-white"
-												aria-hidden="true"
-											/>
+											<LockClosedIcon className="h-5 w-5 text-white" aria-hidden="true" />
 										</span>
 										Iniciar sesión
 									</button>
