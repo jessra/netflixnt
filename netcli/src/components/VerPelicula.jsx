@@ -159,8 +159,11 @@ export default function VerPelicula() {
 																Actores
 															</dt>
 															{peliSelect.mov.actors.map((act) => (
-																<dd key={act.nameAc} className="mt-1 text-sm sm:col-span-2 sm:mt-0">
-																	{ act.nameAc}
+																<dd
+																	key={act.nameAc}
+																	className="mt-1 text-sm sm:col-span-2 sm:mt-0"
+																>
+																	{act.nameAc}
 																</dd>
 															))}
 														</div>
@@ -183,17 +186,17 @@ export default function VerPelicula() {
 													src={`../src/peliculas/` + comentario.img}
 													alt=""
 												/>
-												<div>
+												<div className='flex-auto'>
 													<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark dark:text-stone">
 														{comentario.user} - {comentario.valor}
 													</p>
-													<p className="text-sm">{comentario.review}</p>
+													<p className="text-sm bg-white-bone dark:bg-black-soft dark:text-white-bone py-1.5 px-3 rounded-md">{comentario.review}</p>
 												</div>
 											</div>
 										</li>
 									))}
-									{!activo.token ? 
-										(<li className="my-6 divide-y divide-muted-neutral">
+									{!activo.token ? (
+										<li className="my-6 divide-y divide-muted-neutral">
 											<div className="flex gap-x-6">
 												<img
 													className="h-16 w-16 rounded-full"
@@ -204,14 +207,24 @@ export default function VerPelicula() {
 													<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark dark:text-white-bone">
 														{activo.user.name}
 													</p>
-													<input
-														type="number"
-														min="1"
-														max="5"
-														name=""
-														value={valor}
-														onChange={(e) => setValor(e.target.value)}
-													/>
+													<div className='mb-2'>
+														<label htmlFor="puntuacion" className='mr-2 dark:text-muted'>
+															Dale una puntuación al video
+														</label>
+														<input
+															type="number"
+															id="puntuacion"
+															min="1"
+															max="5"
+															name=""
+															value={valor}
+															onChange={(e) => setValor(e.target.value)}
+															className="w-[3rem] rounded-md text-right py-1.5 px-3 focus:z-10 border-0
+																focus-visible:outline-0 sm:text-md sm:leading-6 bg-white-bone dark:bg-black-medium dark:text-white ring-2 ring-transparent
+																dark:focus-visible:ring-offset-black-obscure focus-visible:ring-offset-2 focus-visible:ring-primario
+																dark:hover:ring-offset-black-obscure hover:ring-offset-2 hover:ring-primario"
+														/>
+													</div>
 													<textarea
 														required
 														className="
@@ -248,8 +261,10 @@ export default function VerPelicula() {
 													Enviar{' '}
 												</button>
 											</div>
-										</li>) : ('')
-									}
+										</li>
+									) : (
+										''
+									)}
 								</ul>
 							</div>
 							<div className="flex h-full flex-col bg-white dark:bg-black-medium shadow-xl">
@@ -282,7 +297,6 @@ export default function VerPelicula() {
 															</div>
 															<p className="dark:text-white-bone">{pelicula.sipnosis}</p>
 														</div>
-														<p className="dark:text-white-bone">{pelicula.sipnosis}</p>
 													</Link>
 												</li>
 											))}
