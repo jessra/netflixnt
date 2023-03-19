@@ -19,7 +19,9 @@ export default function VerPelicula() {
 		}
 	}
 	function formatearFecha(fec) {
-		return fec.split('T')[0];
+		if (fec) {
+			return fec.split('T')[0];
+		}
 	}
 	function limpiarCampos() {
 		if (review) {
@@ -45,11 +47,14 @@ export default function VerPelicula() {
       http
       .post("/aggreview", {user: user, mov: mov, review: review, valor: valor})
       .then((response) => {
-        console.log(response.data)
-        dispatch(movieList(mov))
+				if (response.data.r) {
+					console.log(response.data)
+					dispatch(movieList(mov))
+				} else {
+					console.log('Error:', response.data.msg);
+				}
       })
       .catch((error) => {
-        console.log('Error:', error);
         // Alert('Ha sucedido un problema', false)
       });
     }
