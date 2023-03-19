@@ -90,9 +90,10 @@ export default function VerPelicula() {
 												</div>
 												<button
 													type="button"
-													onClick={(e) => eliminarPeli(peliSelect.id, peliculaSelect.img)}
-													className="rounded-md dark:text-white py-2 px-3 text-sm font-semibold
-													border-4 border-transparent hover:border-primario focus-visible:outline"
+													className="rounded-md dark:text-white py-2 px-3 text-sm font-semibold border-4 border-transparent hover:border-primario focus-visible:outline"
+													onClick={(e) =>
+														eliminarPeli(peliSelect.mov.id, peliSelect.mov.img)
+													}
 												>
 													Eliminar
 												</button>
@@ -200,14 +201,14 @@ export default function VerPelicula() {
 												<p className="text-base font-semibold leading-7 tracking-tight text-stone-dark dark:text-white-bone">
 													{activo.user.name}
 												</p>
-												{/* <input
+												<input
 													type="number"
 													min="1"
 													max="5"
 													name=""
 													value={valor}
 													onChange={(e) => setValor(e.target.value)}
-												/> */}
+												/>
 												<textarea
 													required
 													className="
@@ -251,32 +252,31 @@ export default function VerPelicula() {
 								<div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
 									<div className="flow-root">
 										<ul role="list" className="divide-y divide-muted-neutral">
-											{peliSelect.recomendacion.map((pelicula) => (
-												<li key={pelicula.idMov} className="">
-													<Link to={`/Movie/` + pelicula.idMov}>
-														<div className="flex flex-col md:flex-row lg:flex-col xl:flex-row md:items-center xl:items-start py-6">
-															<div className="h-40 md:w-32 flex-shrink-0 overflow-hidden rounded-md border border-muted-neutral">
-																<img
-																	src={`../src/peliculas/` + pelicula.img}
-																	alt={`Imagen película ` + pelicula.head}
-																	className="h-full w-full object-cover object-center"
-																/>
-															</div>
-															<div className="ml-4 flex flex-1 flex-col">
-																<div>
-																	<div className="flex justify-between text-base font-medium ">
-																		<p className="font-bold dark:text-white">
-																			{pelicula.head}
-																		</p>
-																		<p className="ml-4 dark:text-muted">
-																			{formatearFecha(pelicula.fecMov)}
-																		</p>
-																	</div>
+											{peliSelect.mov.recomendacion.map((pelicula) => (
+												<li key={pelicula.idMov}>
+													<Link
+														to={`/Movie/` + pelicula.idMov}
+														className="flex flex-col md:flex-row lg:flex-col xl:flex-row md:items-center xl:items-start py-6"
+													>
+														<div className="h-40 md:w-32 flex-shrink-0 overflow-hidden rounded-md border border-muted-neutral">
+															<img
+																src={`../src/peliculas/` + pelicula.img}
+																alt={`Imagen película ` + pelicula.head}
+																className="h-full w-full object-cover object-center"
+															/>
+														</div>
+														<div className="ml-4 flex flex-1 flex-col">
+															<div>
+																<div className="flex justify-between text-base font-medium ">
+																	<p className="font-bold dark:text-white">
+																		{pelicula.head}
+																	</p>
+																	<p className="ml-4 dark:text-muted">
+																		{formatearFecha(pelicula.fecMov)}
+																	</p>
 																</div>
-																<p className="dark:text-white-bone">
-																	{pelicula.sipnosis}
-																</p>
 															</div>
+															<p className="dark:text-white-bone">{pelicula.sipnosis}</p>
 														</div>
 													</Link>
 												</li>
