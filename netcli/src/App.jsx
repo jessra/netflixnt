@@ -1,11 +1,9 @@
-import Router from "./router/router.jsx";
+import Router from './router/router.jsx';
 
 export default function App() {
-
-	return (
-		<>
-				<Router />
-			;
-		</>
-	);
+  return (
+    <>
+      <Router />;
+    </>
+  );
 }
