@@ -7,7 +7,9 @@ export const activoSlice = createSlice({
   reducers: {
     listaActivo: (state, action) => {
       state.user = action.payload.user
-      state.token = action.payload.token
+      if (action.payload.token) {
+        state.token = action.payload.token
+      }
     },
   }
 })

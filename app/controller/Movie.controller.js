@@ -50,22 +50,22 @@ exports.create = async (req, name, res) => {
 			img: name,
 			link: req.body.link,
 		})
-		console.log(typeof req.body.actors)
-		// await req.body.actors.forEach((act) => {
-		// 	const [actor, creactor] = Actors.findOrCreate({
-		// 		attributes: ['idAc'],
-		// 		where: {
-		// 			nameAc: act
-		// 		},
-		// 		default: {
-		// 			nameAc: act
-		// 		}
-		// 	})
-		// 	MovieActors.create({  
-		// 		idMovieMA: mov.idMov,
-		// 		idActorMA: actor.idAc
-		// 	})
-		// })
+		const actors = JSON.parse(req.body.actors)
+		for await (const act of actors){
+			const [actor, creactor] = await Actors.findOrCreate({
+				attributes: ['idAc'],
+				where: {
+					nameAc: act.nombre
+				},
+				default: {
+					nameAc: act.nombre
+				}
+			})
+			await MovieActors.create({  
+				idMovieMA: mov.idMov,
+				idActorMA: actor.idAc
+			})
+		}
 		res.send({msg:'Se registró la pelicula correctamente', r: true})
 	} catch (error) {
 		res.send({msg:'Ocurrió un error. ' + error, r: false})

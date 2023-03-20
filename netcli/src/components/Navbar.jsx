@@ -72,18 +72,20 @@ export default function Navbar() {
 											>
 												Inicio
 											</Link>
-											<button
-												type="button"
-												onClick={Modal}
-												className={classNames(
-													isOpenModal
-														? 'bg-primario text-white'
-														: '  hover:bg-gray-700 hover:text-primario',
-													'rounded-md px-3 py-2 text-sm font-bold tracking-widest focus:outline-none dark:text-white'
-												)}
-											>
-												Crear
-											</button>
+											{!activo.token ? ('') : 
+												(<button
+													type="button"
+													onClick={Modal}
+													className={classNames(
+														isOpenModal
+															? 'bg-primario text-white'
+															: '  hover:bg-gray-700 hover:text-primario',
+														'rounded-md px-3 py-2 text-sm font-bold tracking-widest focus:outline-none dark:text-white'
+													)}
+												>
+													Crear
+												</button>)
+											}
 										</div>
 									</div>
 								</div>
@@ -149,7 +151,8 @@ export default function Navbar() {
 								</Link>
 							</div>
 						</Disclosure.Panel>
-						<Disclosure.Panel>
+						{!activo.token ? ('') :
+						(<Disclosure.Panel>
 							{({ close }) => (
 								<button
 									onClick={async () => {
@@ -166,7 +169,8 @@ export default function Navbar() {
 									Crear
 								</button>
 							)}
-						</Disclosure.Panel>
+						</Disclosure.Panel>)
+						}
 					</>
 				)}
 			</Disclosure>
